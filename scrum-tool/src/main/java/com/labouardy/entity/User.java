@@ -8,6 +8,8 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 
+import com.labouardy.annotations.UniqueEmail;
+
 @Entity
 public class User {
 
@@ -22,6 +24,7 @@ public class User {
 	
 	@Email(message="Not an email")
 	@Column(unique=true)
+	@UniqueEmail(message="Email already used !")
 	private String email;
 	
 	@Size(min=6, message="Password must be at least 6 characters")
