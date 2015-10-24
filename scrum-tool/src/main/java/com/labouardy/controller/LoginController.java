@@ -1,5 +1,7 @@
 package com.labouardy.controller;
 
+import java.security.Principal;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -7,7 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class LoginController {
 
 	@RequestMapping("/login")
-	public String signIn(){
+	public String signIn(Principal principal){
+		if(principal!=null){
+			return "redirect:/board.html";
+		}
 		return "login";
 	}
 	

@@ -9,6 +9,7 @@
 
 	<mvc:annotation-driven />
 	<context:component-scan base-package="com.labouardy.controller"></context:component-scan>
+	<context:component-scan base-package="com.labouardy.service"></context:component-scan>
 	
 	<bean
 		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />

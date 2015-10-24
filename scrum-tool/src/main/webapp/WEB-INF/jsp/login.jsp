@@ -1,11 +1,11 @@
 <div class="middle-box">
 	<form  action="/j_spring_security_check" method="post">
 		<div class="form-group">
-			<label for="name">Email:</label>
-			<input type="text" class="form-control" name='j_username'/>
+			<label for="email">Email:</label>
+			<input type="email" class="form-control" name='j_username'/>
 		</div>
 		<div class="form-group">
-			<label for="name">Password:</label>
+			<label for="password">Password:</label>
 			<input type="password" class="form-control" name='j_password'/>
 		</div>
 		<input type="submit" class="btn btn-success btn-block btn-custom-color"  value="Login"/>

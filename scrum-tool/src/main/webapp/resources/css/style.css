@@ -38,3 +38,40 @@ body {
 	height: 100%;
 	min-height: 100%;
 }
+
+.padding-container{
+	margin-top:20px;
+}
+
+.navbar-custom{
+	background-color:#18A689;
+	border-color: #1AB394;
+	border-radius: 0px;
+	box-shadow: 0 6px 5px -5px #1AB394;
+}
+
+.navbar-default .navbar-brand {
+    color: #FFF;
+}
+
+.navbar-default .navbar-brand:hover {
+    color: #FFF;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+    font-weight: bolder;
+    color:#FFF;
+    background: #1AB394;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #FFF;
+}
+
+.navbar-default .navbar-nav > .active > a, 
+.navbar-default .navbar-nav > .active > a:hover, 
+.navbar-default .navbar-nav > .active > a:focus {
+    color:#FFF;
+    background: #1AB394;
+}
