@@ -1,5 +1,7 @@
 package com.labouardy.service;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -7,6 +9,7 @@ import com.labouardy.entity.User;
 import com.labouardy.repository.UserRepository;
 
 @Service
+@Transactional
 public class UserService {
 
 	@Autowired

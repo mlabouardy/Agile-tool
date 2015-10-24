@@ -1,5 +1,7 @@
 package com.labouardy.service;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -7,6 +9,7 @@ import com.labouardy.entity.Role;
 import com.labouardy.repository.RoleRepository;
 
 @Service
+@Transactional
 public class RoleService {
 
 	@Autowired
@@ -14,6 +17,17 @@ public class RoleService {
 	
 	public void save(Role role) {
 		roleRepository.save(role);
+	}
+
+	public Role findById(String name) {
+		int id=-1;
+		if(name.compareTo("Product Owner")==0)
+			id=1;
+		if(name.compareTo("Scrum Master")==0)
+			id=2;
+		if(name.compareTo("Scrum Team")==0)
+			id=3;
+		return roleRepository.findOne(id);
 	}
 
 }

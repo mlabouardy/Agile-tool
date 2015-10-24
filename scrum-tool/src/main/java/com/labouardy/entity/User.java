@@ -1,9 +1,12 @@
 package com.labouardy.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.Email;
 
 @Entity
 public class User {
@@ -11,12 +14,17 @@ public class User {
 	@Id @GeneratedValue
 	private int id;
 	
+	@Size(min=3, message="First name must be at least 3 characters")
 	private String firstname;
 	
+	@Size(min=3, message="Last name must be at least 3 characters")
 	private String lastname;
 	
+	@Email(message="Not an email")
+	@Column(unique=true)
 	private String email;
 	
+	@Size(min=6, message="Password must be at least 6 characters")
 	private String password;
 	
 	@ManyToOne

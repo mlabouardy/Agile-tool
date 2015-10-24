@@ -52,7 +52,7 @@ public class InitService {
 		team.setEmail("team@labouardy.com");
 		team.setFirstname("Scrum");
 		team.setLastname("Team");
-		team.setPassword("team");
+		team.setPassword("teamaz");
 		team.setRole(scrum_team);
 		
 		userService.save(product);

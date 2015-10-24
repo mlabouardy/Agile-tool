@@ -9,7 +9,6 @@
 <tiles:insertAttribute name="assets"></tiles:insertAttribute>
 </head>
 <body>
-
 <tiles:insertAttribute name="body"></tiles:insertAttribute>
 <br/>
 <tiles:insertAttribute name="footer"></tiles:insertAttribute>

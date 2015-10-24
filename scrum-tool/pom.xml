@@ -15,6 +15,22 @@
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>1.1.0.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>5.0.1.Final</version>
+		</dependency>
 
 		<dependency>
 			<groupId>mysql</groupId>
@@ -83,7 +99,7 @@
 			<version>2.2.1</version>
 			<scope>provided</scope>
 		</dependency>
-<!-- Spring Framework -->
+		<!-- Spring Framework -->
 
 		<dependency>
 			<groupId>org.springframework.security</groupId>

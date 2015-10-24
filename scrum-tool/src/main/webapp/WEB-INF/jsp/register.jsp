@@ -1,39 +1,48 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <div class="middle-box">
-	<form action="/j_spring_security_check" method="post">
+	<form:form commandName="user" id="registrationForm">
+		<c:if test="${param.success eq true}">
+			<div class="alert alert-success">Registration successful !</div>
+		</c:if>
 		<div class="form-group">
-			<label for="name">First name:</label> <input type="text"
-				class="form-control" name='j_username' />
+			<label for="firstname">First name:</label>
+			<form:input path="firstname" cssClass="form-control"
+				id="inputFirstName" />
+			<form:errors path="firstname"></form:errors>
 		</div>
 		<div class="form-group">
-			<label for="name">Last name:</label> <input type="text"
-				class="form-control" name='j_username' />
+			<label for="lastname">Last name:</label>
+			<form:input path="lastname" cssClass="form-control"
+				id="inputLastName" />
+			<form:errors path="lastname"></form:errors>
 		</div>
 		<div class="form-group">
-		<label for="name">Job role:</label>
-			<div class="dropdown">
-				<button class="btn btn-success btn-block dropdown-toggle" type="button"
-					id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="true">
-					Choose a role<span class="caret pull-right"></span>
-				</button>
-				<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-					<li><a href="#">Product Owner</a></li>
-					<li><a href="#">Scrum Master</a></li>
-					<li><a href="#">Scrum team</a></li>
-				</ul>
-			</div>
+			<label for="role.id">Job role:</label>
+			<form:select path="role.id" cssClass="form-control">
+  				<form:option value="1">Product Owner</form:option>
+  				<form:option value="2">Scrum Master</form:option>
+  				<form:option value="3">Scrum Team</form:option>
+			</form:select>
+			<form:errors path="role.id"></form:errors>
 		</div>
 		<div class="form-group">
-			<label for="name">Email:</label> <input type="text"
-				class="form-control" name='j_username' />
+			<label for="email">Email:</label>
+			<form:input path="email" cssClass="form-control" id="inputEmail" />
+			<form:errors path="email"></form:errors>
 		</div>
 		<div class="form-group">
-			<label for="name">Password:</label> <input type="password"
-				class="form-control" name='j_password' />
+			<label for="password">Password:</label>
+			<form:password path="password" cssClass="form-control"
+				id="inputPassword" />
+			<form:errors path="password"></form:errors>
 		</div>
-		<input type="submit"
-			class="btn btn-success btn-block btn-custom-color" value="Sign up" />
-	</form>
+		<button type="submit" class="btn btn-success btn-block">Create</button>
+	</form:form>
+
 	<p class="text-muted text-center">
 		<small>Do you have an account?</small>
 	</p>
