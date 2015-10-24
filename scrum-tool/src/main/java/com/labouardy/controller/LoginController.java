@@ -5,6 +5,7 @@ import java.security.Principal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.convert.ConversionService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.ServletRequestDataBinder;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.labouardy.entity.Role;
 import com.labouardy.entity.User;
@@ -47,8 +50,17 @@ public class LoginController {
 		if (result.hasErrors()) {
 			return "register";
 		}
+		BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
+		user.setPassword(encoder.encode(user.getPassword()));
 		userService.save(user);
 		return "redirect:/register.html?success=true";
+	}
+	
+	@RequestMapping("/register/available")
+	@ResponseBody
+	public String isAvailable(@RequestParam String email){
+		boolean available=userService.findUserByEmail(email)==null;
+		return ""+available;
 	}
 
 

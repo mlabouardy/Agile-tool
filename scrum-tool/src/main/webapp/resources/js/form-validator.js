@@ -14,7 +14,16 @@ $(document).ready(
 							email : {
 								email : true,
 								required : true,
-								minlength : 1
+								minlength : 1,
+								remote:{
+									url:"/register/available.html",
+									type:"get",
+									data:{
+										email:function(){
+											return $("#inputEmail").val();
+										}
+									}
+								}
 							},
 							password : {
 								required : true,
@@ -28,6 +37,11 @@ $(document).ready(
 						unhighlight : function(element) {
 							$(element).closest(".form-group").removeClass(
 									"has-error").addClass("has-success");
+						},
+						messages:{
+							email:{
+								remote:"Email already in use !"
+							}
 						}
 					});
 		});

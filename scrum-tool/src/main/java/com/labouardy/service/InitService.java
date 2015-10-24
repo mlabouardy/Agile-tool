@@ -4,6 +4,7 @@ import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.labouardy.entity.Role;
@@ -34,25 +35,27 @@ public class InitService {
 		roleService.save(scrum_master);
 		roleService.save(scrum_team);
 		
+		BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
+		
 		User product=new User();
 		product.setEmail("product@labouardy.com");
 		product.setFirstname("Product");
 		product.setLastname("Owner");
-		product.setPassword("product");
+		product.setPassword(encoder.encode("product"));
 		product.setRole(product_owner);
 		
 		User master=new User();
 		master.setEmail("master@labouardy.com");
 		master.setFirstname("Scrum");
 		master.setLastname("Master");
-		master.setPassword("master");
+		master.setPassword(encoder.encode("master"));
 		master.setRole(scrum_master);
 		
 		User team=new User();
 		team.setEmail("team@labouardy.com");
 		team.setFirstname("Scrum");
 		team.setLastname("Team");
-		team.setPassword("teamaz");
+		team.setPassword(encoder.encode("teamaz"));
 		team.setRole(scrum_team);
 		
 		userService.save(product);
