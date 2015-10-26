@@ -1,4 +1,4 @@
-package com.labouardy.entity;
+package com.bordeaux.entity;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.labouardy.converter;
+package com.bordeaux.converter;
 
 import java.beans.PropertyEditorSupport;
 
@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-import com.labouardy.entity.Role;
-import com.labouardy.service.RoleService;
+import com.bordeaux.entity.Role;
+import com.bordeaux.service.RoleService;
 
 public class RoleConverter implements Converter<String, Role>{
 

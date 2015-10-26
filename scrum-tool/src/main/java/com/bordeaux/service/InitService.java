@@ -1,4 +1,4 @@
-package com.labouardy.service;
+package com.bordeaux.service;
 
 import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.labouardy.entity.Role;
-import com.labouardy.entity.User;
+import com.bordeaux.entity.Role;
+import com.bordeaux.entity.User;
 
 @Service
 @Transactional

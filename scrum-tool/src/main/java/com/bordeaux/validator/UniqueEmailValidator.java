@@ -1,12 +1,12 @@
-package com.labouardy.validator;
+package com.bordeaux.validator;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.labouardy.annotations.UniqueEmail;
-import com.labouardy.repository.UserRepository;
+import com.bordeaux.annotations.UniqueEmail;
+import com.bordeaux.repository.UserRepository;
 
 public class UniqueEmailValidator implements ConstraintValidator<UniqueEmail, String>{
 	@Autowired

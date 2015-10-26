@@ -1,12 +1,12 @@
-package com.labouardy.service;
+package com.bordeaux.service;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.labouardy.entity.User;
-import com.labouardy.repository.UserRepository;
+import com.bordeaux.entity.User;
+import com.bordeaux.repository.UserRepository;
 
 @Service
 @Transactional

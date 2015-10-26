@@ -8,7 +8,7 @@
 
 	<mvc:annotation-driven/>
 
-	<context:component-scan base-package="com.labouardy.controller"></context:component-scan>
+	<context:component-scan base-package="com.bordeaux.controller"></context:component-scan>
 
 
 	<bean

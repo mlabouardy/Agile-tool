@@ -1,4 +1,4 @@
-package com.labouardy.annotations;
+package com.bordeaux.annotations;
 
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-import com.labouardy.validator.UniqueEmailValidator;
+import com.bordeaux.validator.UniqueEmailValidator;
 
 
 @Target({FIELD})

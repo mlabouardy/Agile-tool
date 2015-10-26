@@ -1,4 +1,4 @@
-package com.labouardy.controller;
+package com.bordeaux.controller;
 
 import java.security.Principal;
 
@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.labouardy.entity.Role;
-import com.labouardy.entity.User;
-import com.labouardy.service.UserService;
+import com.bordeaux.entity.Role;
+import com.bordeaux.entity.User;
+import com.bordeaux.service.UserService;
 
 @Controller
 public class LoginController {
