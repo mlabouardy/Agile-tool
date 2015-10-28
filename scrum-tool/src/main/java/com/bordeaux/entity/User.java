@@ -12,7 +12,7 @@ import com.bordeaux.annotations.UniqueEmail;
 
 @Entity
 public class User {
-
+ 
 	@Id @GeneratedValue
 	private int id;
 	

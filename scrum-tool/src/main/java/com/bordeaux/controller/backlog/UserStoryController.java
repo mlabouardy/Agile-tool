@@ -1,0 +1,57 @@
+package com.bordeaux.controller.backlog;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.bordeaux.entity.UserStory;
+import com.bordeaux.form.backlog.UserStoryForm;
+import com.bordeaux.service.BackLogService;
+
+@Controller
+public class UserStoryController {
+
+	@Autowired
+	private BackLogService backLogService;
+	
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	public String addUserStory(@Valid UserStoryForm userStoryForm,BindingResult bindingResult, Model model) {
+		return process(userStoryForm,bindingResult,model,"add");
+	}
+	
+	@RequestMapping(value = "/edit", method = RequestMethod.POST)
+	public String editUserStory(@Valid UserStoryForm userStoryForm,BindingResult bindingResult, Model model) {
+		return process(userStoryForm,bindingResult,model,"edit");
+	}
+	
+	private String process(UserStoryForm userStoryForm,BindingResult bindingResult, Model model,String returnType){
+		
+		if (bindingResult.hasErrors()){	//erreur dans le formulaire
+			
+			userStoryForm.setDependencies(backLogService.getAllUserStoriesIdExceptId(userStoryForm.getId()));
+			userStoryForm.setException(bindingResult.getAllErrors().get(0).getDefaultMessage());
+			model.addAttribute("userStoryForm", userStoryForm);
+			
+			return returnType;
+			
+		}else{
+			
+			UserStory userStory = backLogService.generateUserStory(userStoryForm); // a partir du formulaire
+			userStory = backLogService.addOrUpdateUserStory(userStory);	// reference de l'objet sauvegarde
+			backLogService.addOrUpdateUserStoryDependencies(userStory.getId(),userStoryForm.getSelectedDependencies());
+			backLogService.initModelForBackLogPage(model);
+			
+			return "board";
+			
+		}
+	}
+	
+	
+	
+	
+}

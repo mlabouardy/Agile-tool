@@ -3,9 +3,28 @@
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
  
 <tiles-definitions>
+
     <definition name="common" template="/WEB-INF/layouts/classic.jsp">
         <put-attribute name="footer" value="/WEB-INF/layouts/footer.jsp" />
         <put-attribute name="assets" value="/WEB-INF/layouts/assets.jsp" />
+    </definition>
+    
+    <definition name="backlog" extends="common">
+         <put-attribute name="title" value="Scrum Tool - Home page" />
+    	 <put-attribute name="body" value="/WEB-INF/jsp/backlog.jsp" />
+    	 <put-attribute name="current" value="index"></put-attribute>
+    </definition>
+    
+    <definition name="add" extends="common">
+         <put-attribute name="title" value="Scrum Tool - Home page" />
+    	 <put-attribute name="body" value="/WEB-INF/jsp/add.jsp" />
+    	 <put-attribute name="current" value="index"></put-attribute>
+    </definition>
+    
+    <definition name="edit" extends="common">
+         <put-attribute name="title" value="Scrum Tool - Home page" />
+    	 <put-attribute name="body" value="/WEB-INF/jsp/edit.jsp" />
+    	 <put-attribute name="current" value="index"></put-attribute>
     </definition>
     
     <definition name="home" extends="common">

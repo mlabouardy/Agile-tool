@@ -5,8 +5,8 @@
 	<div class="panel panel-primary">
 		<div class="panel-heading">${name}</div>
 		<div class="panel-body">
-			<a class="btn btn-danger pull-right" href="<spring:url value="/logout"/>">Sign out</a>
-			<h3>Welcome to Product Owner Dashboard</h3>
+			<a class="btn btn-danger pull-right" href="<spring:url value="/logout"/>">Sign out</a> <br/> </br>
+			<jsp:include page="backlog.jsp"></jsp:include>
 		</div>
 	</div>
 </div>

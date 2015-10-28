@@ -3,5 +3,8 @@
 	<persistence-unit name="scrum-tool">
 		<class>com.bordeaux.entity.Role</class>
 		<class>com.bordeaux.entity.User</class>
+		<class>com.bordeaux.entity.BackLog</class>
+		<class>com.bordeaux.entity.UserStory</class>
+		<class>com.bordeaux.entity.UserStoryDependencies</class>
 	</persistence-unit>
 </persistence>
