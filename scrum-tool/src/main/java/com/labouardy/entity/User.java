@@ -1,10 +1,13 @@
 package com.labouardy.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 
@@ -33,6 +36,9 @@ public class User {
 	@ManyToOne
 	private Role role;
 
+	@OneToMany(targetEntity=Project.class,mappedBy="user")
+	private List<Project> projects;
+	
 	public int getId() {
 		return id;
 	}
@@ -79,6 +85,14 @@ public class User {
 
 	public void setRole(Role role) {
 		this.role = role;
+	}
+
+	public List<Project> getProjects() {
+		return projects;
+	}
+
+	public void setProjects(List<Project> projects) {
+		this.projects = projects;
 	}
 	
 	

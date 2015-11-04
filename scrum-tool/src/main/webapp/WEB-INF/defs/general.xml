@@ -40,5 +40,19 @@
     	 <put-attribute name="current" value="index"></put-attribute>
     </definition>
     
+    <definition name="view-project" extends="common">
+    	 <put-attribute name="assets" value="/WEB-INF/layouts/assets-board.jsp" />
+         <put-attribute name="title" value="Dashboard - Scrum Master" />
+    	 <put-attribute name="body" value="/WEB-INF/jsp/project/view-project.jsp" />
+    	 <put-attribute name="current" value="index"></put-attribute>
+    </definition>
+    
+    <definition name="backlog" extends="common">
+    	 <put-attribute name="assets" value="/WEB-INF/layouts/assets-board.jsp" />
+         <put-attribute name="title" value="Dashboard - Scrum Master" />
+    	 <put-attribute name="body" value="/WEB-INF/jsp/project/backlog.jsp" />
+    	 <put-attribute name="current" value="index"></put-attribute>
+    </definition>
+    
 	   
 </tiles-definitions>

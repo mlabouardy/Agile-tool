@@ -22,6 +22,7 @@ public class DashboardController {
 		String email=principal.getName();
 		User user=userService.findUserByEmail(email);
 		model.addAttribute("name", user.getFirstname()+" "+user.getLastname());
+		model.addAttribute("projects", user.getProjects());
 		return "board";
 	}
 }
