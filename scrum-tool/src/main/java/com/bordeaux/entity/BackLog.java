@@ -14,7 +14,7 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class BackLog {
-
+ 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;

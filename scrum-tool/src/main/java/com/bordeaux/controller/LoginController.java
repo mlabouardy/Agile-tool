@@ -12,8 +12,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.bordeaux.entity.User;
-import com.bordeaux.service.UserService;
+import com.bordeaux.entity.Project;
+import com.bordeaux.entity.Role;
+import com.bordeaux.entity.Role.RoleType;
+import com.bordeaux.entity.user.ProductOwner;
+import com.bordeaux.entity.user.User;
+import com.bordeaux.repository.RoleRepository;
+import com.bordeaux.service.user.UserService;
 
 @Controller
 public class LoginController {
@@ -21,6 +26,9 @@ public class LoginController {
 	@Autowired
 	private UserService userService;
 
+	@Autowired
+	private RoleRepository roleRepository;
+	
 	@ModelAttribute("user")
 	public User constructUser() {
 		return new User();
@@ -44,18 +52,34 @@ public class LoginController {
 		if (result.hasErrors()) {
 			return "register";
 		}
-		BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
-		user.setPassword(encoder.encode(user.getPassword()));
-		userService.save(user);
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		
+		// on recoit juste l'id du role, le nom du role est null, donc on le cherche dans le roleRepository
+		Role userRole = roleRepository.findOne(user.getRole().getId());
+		
+		// ca permet d'ajouter un projet un product owner
+		if (userRole.getName().equals(RoleType.PRODUCT.toString())) {
+			
+			ProductOwner productOwner = new ProductOwner();
+			productOwner.setEmail(user.getEmail());
+			productOwner.setFirstname(user.getFirstname());
+			productOwner.setLastname(user.getLastname());
+			productOwner.setPassword(encoder.encode(user.getPassword()));
+			productOwner.setProject(new Project());
+			userService.save(productOwner);
+			
+		} else {
+			userService.save(user);
+		}
+
 		return "redirect:/register.html?success=true";
 	}
-	
+
 	@RequestMapping("/register/available")
 	@ResponseBody
-	public String isAvailable(@RequestParam String email){
-		boolean available=userService.findUserByEmail(email)==null;
-		return ""+available;
+	public String isAvailable(@RequestParam String email) {
+		boolean available = userService.findUserByEmail(email) == null;
+		return "" + available;
 	}
-
 
 }

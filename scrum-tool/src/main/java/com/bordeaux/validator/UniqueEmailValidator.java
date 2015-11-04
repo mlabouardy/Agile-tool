@@ -6,7 +6,7 @@ import javax.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bordeaux.annotations.UniqueEmail;
-import com.bordeaux.repository.UserRepository;
+import com.bordeaux.repository.user.UserRepository;
 
 public class UniqueEmailValidator implements ConstraintValidator<UniqueEmail, String>{
 	@Autowired

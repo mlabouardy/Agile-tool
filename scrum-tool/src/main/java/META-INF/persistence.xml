@@ -2,9 +2,14 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="scrum-tool">
 		<class>com.bordeaux.entity.Role</class>
-		<class>com.bordeaux.entity.User</class>
+		<class>com.bordeaux.entity.user.User</class>
+		<class>com.bordeaux.entity.user.ProductOwner</class>
+		<class>com.bordeaux.entity.user.ScrumMaster</class>
+		<class>com.bordeaux.entity.user.ScrumTeam</class>
+		<class>com.bordeaux.entity.Project</class>
 		<class>com.bordeaux.entity.BackLog</class>
 		<class>com.bordeaux.entity.UserStory</class>
 		<class>com.bordeaux.entity.UserStoryDependencies</class>
 	</persistence-unit>
 </persistence>
+ 

@@ -35,21 +35,19 @@ public class BackLogService {
 	@Autowired
 	private UserStoryDependenciesRepository userStoryDependenciesRepository;
 
-	private BackLog getSingletonBackLog() {
-
-		BackLog backLog = backLogRepository.findOne(1);
-
-		if (backLog == null) {
-			backLog = backLogRepository.save(new BackLog());
-		}
-
-		return backLog;
-
+	private int backLogID;
+	
+	public void setBackLogID(int backLogID){
+		this.backLogID = backLogID; 
+	}
+	
+	private BackLog getBackLog() {
+		return backLogRepository.findOne(this.backLogID);
 	}
 
 	public UserStory addOrUpdateUserStory(UserStory userStory) {
 
-		BackLog backLog = getSingletonBackLog();
+		BackLog backLog = getBackLog();
 
 		if (userStory.getId() == 0) {
 
@@ -86,7 +84,7 @@ public class BackLogService {
 				usd.setDependencies(childs);
 				userStoryDependenciesRepository.save(usd);
 			} else { // add
-				BackLog backLog = getSingletonBackLog();
+				BackLog backLog = getBackLog();
 				backLog.addDependencies(new UserStoryDependencies(parent, childs));
 				backLogRepository.save(backLog);
 			}
@@ -101,7 +99,7 @@ public class BackLogService {
 	
 	private Map<Integer, ArrayList<Integer>> getDependenciesID() {
 
-		BackLog backLog = getSingletonBackLog();
+		BackLog backLog = getBackLog();
 
 		Collection<UserStoryDependencies> userStoryDependenciesList = backLog.getDependencies();
 
@@ -125,7 +123,7 @@ public class BackLogService {
 
 	public List<Integer> getAllUserStoriesIdExceptId(int removeId) {
 
-		BackLog backLog = getSingletonBackLog();
+		BackLog backLog = getBackLog();
 
 		List<Integer> collection = new ArrayList<Integer>();
 		Collection<UserStory> userStories = backLog.getUserStories();
@@ -140,7 +138,7 @@ public class BackLogService {
 
 	private Collection<UserStoryForm> getUserStoryFormList() {
 
-		BackLog backLog = getSingletonBackLog();
+		BackLog backLog = getBackLog();
 
 		Collection<UserStoryForm> userStoriesForm = new ArrayList<UserStoryForm>();
 		Collection<UserStory> userStories = backLog.getUserStories();
