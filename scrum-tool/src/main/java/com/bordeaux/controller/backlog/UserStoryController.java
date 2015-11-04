@@ -12,12 +12,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.bordeaux.entity.UserStory;
 import com.bordeaux.form.backlog.UserStoryForm;
 import com.bordeaux.service.BackLogService;
+import com.bordeaux.service.user.ScrumMasterService;
 
 @Controller
 public class UserStoryController {
 
 	@Autowired
 	private BackLogService backLogService;
+	
+	@Autowired
+	private ScrumMasterService scrumMasterService;
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String addUserStory(@Valid UserStoryForm userStoryForm,BindingResult bindingResult, Model model) {
@@ -34,6 +38,7 @@ public class UserStoryController {
 		if (bindingResult.hasErrors()){	//erreur dans le formulaire
 			
 			userStoryForm.setDependencies(backLogService.getAllUserStoriesIdExceptId(userStoryForm.getId()));
+			userStoryForm.setScrumMasterList(scrumMasterService.getScrumMasterList());
 			userStoryForm.setException(bindingResult.getAllErrors().get(0).getDefaultMessage());
 			model.addAttribute("userStoryForm", userStoryForm);
 			
@@ -44,6 +49,7 @@ public class UserStoryController {
 			UserStory userStory = backLogService.generateUserStory(userStoryForm); // a partir du formulaire
 			userStory = backLogService.addOrUpdateUserStory(userStory);	// reference de l'objet sauvegarde
 			backLogService.addOrUpdateUserStoryDependencies(userStory.getId(),userStoryForm.getSelectedDependencies());
+			scrumMasterService.addUserStoryToScrumMaster(userStoryForm.getSelectedScrumMasterId(),userStory);
 			backLogService.initModelForBackLogPage(model);
 			
 			return "board";

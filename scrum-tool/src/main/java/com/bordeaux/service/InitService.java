@@ -47,12 +47,25 @@ public class InitService {
 		product2.setPassword(encoder.encode("product"));
 		product2.setProject(new Project());
 
-		ScrumMaster master = new ScrumMaster();
-		master.setEmail("master@labouardy.com");
-		master.setFirstname("Scrum");
-		master.setLastname("Master");
-		master.setPassword(encoder.encode("master"));
+		ScrumMaster master1 = new ScrumMaster();
+		master1.setEmail("master1@labouardy.com");
+		master1.setFirstname("Scrum1");
+		master1.setLastname("Master1");
+		master1.setPassword(encoder.encode("master"));
 
+		ScrumMaster master2 = new ScrumMaster();
+		master2.setEmail("master2@labouardy.com");
+		master2.setFirstname("Scrum2");
+		master2.setLastname("Master2");
+		master2.setPassword(encoder.encode("master"));
+		
+		ScrumMaster master3 = new ScrumMaster();
+		master3.setEmail("master3@labouardy.com");
+		master3.setFirstname("Scrum3");
+		master3.setLastname("Master3");
+		master3.setPassword(encoder.encode("master"));
+		
+		
 		ScrumTeam team = new ScrumTeam();
 		team.setEmail("team@labouardy.com");
 		team.setFirstname("Scrum");
@@ -61,7 +74,9 @@ public class InitService {
 
 		userService.save(product);
 		userService.save(product2);
-		userService.save(master);
+		userService.save(master1);
+		userService.save(master2);
+		userService.save(master3);
 		userService.save(team);
 
 	}

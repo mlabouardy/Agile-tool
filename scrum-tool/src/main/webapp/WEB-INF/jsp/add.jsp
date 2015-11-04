@@ -39,6 +39,15 @@
 					</div>
 				</c:if>
 				
+				<c:if test="${fn:length(userStoryForm.getScrumMasterList()) > 0}">
+					<div class="form-group">
+					 	<label for="master_input">ScrumMaster</label>
+					 	<f:select id="master_input" path="selectedScrumMasterId">
+						    <f:options items="${userStoryForm.getScrumMasterList()}" />
+						</f:select>
+					</div>
+				</c:if>
+				
 				
 				<div class="form-group">
 					<input class="btn btn-success btn-block" type="submit" value="submit">

@@ -76,8 +76,7 @@ public class DashboardController {
 		int userStoryId = backLogForm.getTypeForm().getId();
 		
 		if (type.equals("add") || type.equals("edit")) {
-		
-			
+
 			UserStoryForm userStoryForm = backLogService.getUserStoryForm(userStoryId);
 			model.addAttribute("userStoryForm", userStoryForm);
 			return type;

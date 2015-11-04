@@ -2,6 +2,7 @@ package com.bordeaux.form.backlog;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -15,11 +16,11 @@ public class UserStoryForm {
 	private int id;
 
 	@NotEmpty(message = "The tag field can not be empty")
-	@Size(min=3,max=20, message ="The size of the tag should be between {min} and {max} characters")
+	@Size(min = 3, max = 20, message = "The size of the tag should be between {min} and {max} characters")
 	private String tag;
 
 	@NotEmpty(message = "The description field can not be empty")
-	@Size(min=10,max=5000, message ="The size of the description should be between {min} and {max} characters")
+	@Size(min = 10, max = 5000, message = "The size of the description should be between {min} and {max} characters")
 	private String description;
 
 	@NotNull(message = "The priority field can not be empty")
@@ -33,13 +34,22 @@ public class UserStoryForm {
 	private int difficulty;
 
 	private String exception;
-	
+
 	// dependance choisi par l'utilisateur durant la saisie
 	private List<Integer> selectedDependencies;
-	
+
 	// toutes les dependances possibles (sauf lui meme)
 	private List<Integer> dependencies;
-	
+
+	// tous les Scrum Master possible
+	private Map<Integer, String> scrumMasterList;
+
+	// le Scrum Master selectionne
+	private String selectedScrumMasterName;
+
+	// le Scrum Master selectionne
+	private int selectedScrumMasterId;
+
 	public UserStoryForm() {
 		this.dependencies = new ArrayList<Integer>();
 	}
@@ -83,11 +93,11 @@ public class UserStoryForm {
 	public void setDifficulty(int difficulty) {
 		this.difficulty = difficulty;
 	}
-	
+
 	public List<Integer> getDependencies() {
 		return dependencies;
 	}
-	
+
 	public void setDependencies(List<Integer> dependencies) {
 		this.dependencies = dependencies;
 	}
@@ -95,7 +105,7 @@ public class UserStoryForm {
 	public List<Integer> getSelectedDependencies() {
 		return selectedDependencies;
 	}
-	
+
 	public void setSelectedDependencies(List<Integer> selectedDependencies) {
 		this.selectedDependencies = selectedDependencies;
 	}
@@ -103,9 +113,33 @@ public class UserStoryForm {
 	public String getException() {
 		return exception;
 	}
-	
+
 	public void setException(String exception) {
 		this.exception = exception;
 	}
-	
+
+	public Map<Integer, String> getScrumMasterList() {
+		return scrumMasterList;
+	}
+
+	public void setScrumMasterList(Map<Integer, String> scrumMasterList) {
+		this.scrumMasterList = scrumMasterList;
+	}
+
+	public int getSelectedScrumMasterId() {
+		return selectedScrumMasterId;
+	}
+
+	public String getSelectedScrumMasterName() {
+		return selectedScrumMasterName;
+	}
+
+	public void setSelectedScrumMasterId(int selectedScrumMasterId) {
+		this.selectedScrumMasterId = selectedScrumMasterId;
+	}
+
+	public void setSelectedScrumMasterName(String selectedScrumMasterName) {
+		this.selectedScrumMasterName = selectedScrumMasterName;
+	}
+
 }

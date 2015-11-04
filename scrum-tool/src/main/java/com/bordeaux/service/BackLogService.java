@@ -16,11 +16,13 @@ import org.springframework.ui.Model;
 import com.bordeaux.entity.BackLog;
 import com.bordeaux.entity.UserStory;
 import com.bordeaux.entity.UserStoryDependencies;
+import com.bordeaux.entity.user.ScrumMaster;
 import com.bordeaux.form.backlog.BackLogForm;
 import com.bordeaux.form.backlog.UserStoryForm;
 import com.bordeaux.repository.BackLogRepository;
 import com.bordeaux.repository.UserStoryDependenciesRepository;
 import com.bordeaux.repository.UserStoryRepository;
+import com.bordeaux.service.user.ScrumMasterService;
 
 @Service
 @Transactional
@@ -35,6 +37,10 @@ public class BackLogService {
 	@Autowired
 	private UserStoryDependenciesRepository userStoryDependenciesRepository;
 
+	@Autowired
+	private ScrumMasterService scrumMasterService;
+	
+	
 	private int backLogID;
 	
 	public void setBackLogID(int backLogID){
@@ -94,6 +100,7 @@ public class BackLogService {
 	public void removeUserStory(int userStoryID){
 		UserStoryDependencies usd = userStoryDependenciesRepository.findOneByParent(userStoryRepository.findOne(userStoryID));
 		userStoryDependenciesRepository.delete(usd);
+		scrumMasterService.removeUserStoryFromScrumMaster(userStoryID);
 		userStoryRepository.delete(userStoryID);
 	}
 	
@@ -153,6 +160,14 @@ public class BackLogService {
 			userStoryForm.setPriority(userStory.getPriority());
 			userStoryForm.setDependencies(getAllUserStoriesIdExceptId(userStory.getId()));
 			userStoryForm.setSelectedDependencies(dependenciesID.get(userStory.getId()));
+			userStoryForm.setScrumMasterList(scrumMasterService.getScrumMasterList());
+			
+			ScrumMaster scrumMaster = scrumMasterService.getScrumMasterByUserStoryID(userStory.getId());
+			if (scrumMaster!=null){
+				userStoryForm.setSelectedScrumMasterId(scrumMaster.getId());
+				userStoryForm.setSelectedScrumMasterName(scrumMaster.getFirstname() + " " + scrumMaster.getLastname());
+			}
+			
 			userStoriesForm.add(userStoryForm);
 		}
 
@@ -175,6 +190,7 @@ public class BackLogService {
 		UserStory userStory = userStoryRepository.findOne(userStoryID);
 
 		if (userStory != null) {
+			
 			userStoryForm.setId(userStory.getId());
 			userStoryForm.setTag(userStory.getTag());
 			userStoryForm.setDescription(userStory.getDescription());
@@ -182,8 +198,18 @@ public class BackLogService {
 			userStoryForm.setPriority(userStory.getPriority());
 			userStoryForm.setDependencies(getAllUserStoriesIdExceptId(userStory.getId()));
 			userStoryForm.setSelectedDependencies(getDependenciesID().get(userStory.getId()));
+			userStoryForm.setScrumMasterList(scrumMasterService.getScrumMasterList());
+			
+			ScrumMaster scrumMaster = scrumMasterService.getScrumMasterByUserStoryID(userStory.getId());
+			
+			if (scrumMaster!=null){
+				userStoryForm.setSelectedScrumMasterId(scrumMaster.getId());
+				userStoryForm.setSelectedScrumMasterName(scrumMaster.getFirstname() + " " + scrumMaster.getLastname());	
+			}
+			
 		} else {
 			userStoryForm.setDependencies(getAllUserStoriesIdExceptId(userStoryID));
+			userStoryForm.setScrumMasterList(scrumMasterService.getScrumMasterList());			
 		}
 
 		return userStoryForm;

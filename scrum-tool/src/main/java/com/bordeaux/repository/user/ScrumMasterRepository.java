@@ -10,4 +10,5 @@ public interface ScrumMasterRepository extends JpaRepository<ScrumMaster, Intege
 
 	public ScrumMaster findByEmail(String email);
 
+	public ScrumMaster findOneById(int id);
 }

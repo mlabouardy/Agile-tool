@@ -28,6 +28,7 @@
 							<th>Priority</th>
 							<th>Difficulty</th>
 							<th>Dependencies</th>
+							<th>Scrum Master</th>
 						</tr>
 					</thead>
 
@@ -56,6 +57,7 @@
 							<td>${userStoryForm.getPriority()}</td>
 							<td>${userStoryForm.getDifficulty()}</td>
 							<td>${userStoryForm.getSelectedDependencies()}</td>
+							<td>${userStoryForm.getSelectedScrumMasterName()}</td>
 						</tr>
 
 					</c:forEach>
