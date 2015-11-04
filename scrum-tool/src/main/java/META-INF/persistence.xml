@@ -3,5 +3,6 @@
 	<persistence-unit name="scrum-tool">
 		<class>com.labouardy.entity.Role</class>
 		<class>com.labouardy.entity.User</class>
+		<class>com.labouardy.entity.Project</class>
 	</persistence-unit>
 </persistence>

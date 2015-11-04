@@ -1,12 +1,63 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<div ng-controller="tasksController">
 
-<div class="container padding-container">
-	<div class="panel panel-primary">
-		<div class="panel-heading">${name}</div>
-		<div class="panel-body">
-			<a class="btn btn-danger pull-right" href="<spring:url value="/logout"/>">Sign out</a>
-			<h3>Welcome to Product Owner Dashboard</h3>
+	<div class="row  border-bottom white-bg dashboard-header">
+		<div class="col-sm-3">
+			<h2>Product Owner</h2>
+		</div>
+		
+	</div>
+	<div class="row border-bottom white-bg dashboard-header">
+	<div class="col-sm-3">
+		<a class="btn btn-success" href="board/create/project.html"><i class="fa fa-plus"></i> Create project</a>
 		</div>
 	</div>
-</div>
+	
+	<div class="wrapper wrapper-content animated fadeInRight">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-title">
+						<h5>List of projects</h5>
+						<div class="ibox-tools">
+							<a class="collapse-link"> <i class="fa fa-chevron-up"></i>
+							</a>
+						</div>
+					</div>
+					<div class="ibox-content">
+
+						<div class="table-responsive">
+							<table class="table table-striped table-bordered table-hover">
+								<thead>
+									<tr>
+										<th>Name</th>
+										<th>Description</th>
+										<th>Options</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Model</td>
+										<td>bla bla bla</td>
+										<td style="width:95px">
+											<div class="button-group">
+												<a class="btn btn-success btn-xs"><i class="fa fa-eye"></i></a>
+												<a class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i></a>
+												<a class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></a>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	
+	
+<script>
+
+</script>

@@ -27,8 +27,16 @@
     </definition>
     
     <definition name="board" extends="common">
+    	 <put-attribute name="assets" value="/WEB-INF/layouts/assets-board.jsp" />
          <put-attribute name="title" value="Dashboard - Scrum Master" />
     	 <put-attribute name="body" value="/WEB-INF/jsp/board.jsp" />
+    	 <put-attribute name="current" value="index"></put-attribute>
+    </definition>
+    
+     <definition name="create-project" extends="common">
+    	 <put-attribute name="assets" value="/WEB-INF/layouts/assets-board.jsp" />
+         <put-attribute name="title" value="Dashboard - Scrum Master" />
+    	 <put-attribute name="body" value="/WEB-INF/jsp/create-project.jsp" />
     	 <put-attribute name="current" value="index"></put-attribute>
     </definition>
     
