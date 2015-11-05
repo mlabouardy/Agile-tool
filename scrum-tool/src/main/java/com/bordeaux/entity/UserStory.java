@@ -1,9 +1,17 @@
 package com.bordeaux.entity;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 @Entity
 public class UserStory {
@@ -20,6 +28,18 @@ public class UserStory {
 
 	private int difficulty;
 
+	@OneToMany
+	private List<Task> tasks;
+
+	public UserStory() {
+	}
+	public List<Task> getTasks() {
+		return tasks;
+	}
+	public void setTasks(List<Task> tasks) {
+		this.tasks = tasks;
+	}
+	
 	public int getId() {
 		return id;
 	}

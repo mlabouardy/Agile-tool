@@ -41,6 +41,9 @@ public class DashboardController {
 	@Autowired
 	private BackLogService backLogService;
 	
+	@Autowired
+	private TaskService taskService;
+	
 	@RequestMapping("/board")
 	public String dashboard(Model model, Principal principal){
 		String email=principal.getName();
@@ -98,5 +101,29 @@ public class DashboardController {
 		return "board";
 	}
 	
+	@ModelAttribute("task")
+	public Task constructTask(){
+		return new Task();
+	}
+	
+	@RequestMapping(value="/addtask/{id}",method=RequestMethod.POST)
+	public String addTask(@ModelAttribute("task") Task task, @PathVariable("id") int id){
+		 
+		taskService.saveTaskInUserStory(task, id);
+		return "board";
+		
+	}
+	
+	@RequestMapping(value="/addtask/{id}")
+	public String addTask(@PathVariable("id") int id){
+		return "addtask";
+	}
+	
+	@RequestMapping(value="/addtask/{id}" , method=RequestMethod.GET)
+	public String ListTask(TaskForm taskForm,Model model){
+		Collection<TaskForm> taskForms=taskService.getTaskForms();
+	    model.addAttribute("taskForms", taskForms);
+	    return "addtask";
+	}
 	
 }

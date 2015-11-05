@@ -7,6 +7,7 @@
 		<div class="panel-body">
 			<a class="btn btn-danger pull-right" href="<spring:url value="/logout"/>">Sign out</a>
 			<h3>Welcome to Scrum Master Dashboard</h3>
+			<jsp:include page="task.jsp"></jsp:include>
 		</div>
 	</div>
 </div>

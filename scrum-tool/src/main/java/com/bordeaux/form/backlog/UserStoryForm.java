@@ -50,6 +50,19 @@ public class UserStoryForm {
 	// le Scrum Master selectionne
 	private int selectedScrumMasterId;
 
+	/****************************************************/
+	 private List<TaskForm> taskForms;
+		
+		public List<TaskForm> getTaskForms() {
+			return taskForms;
+		}
+		public void setTaskForms(List<TaskForm> taskForms) {
+			this.taskForms = taskForms;
+		}
+		/************************************************/
+	
+	
+	
 	public UserStoryForm() {
 		this.dependencies = new ArrayList<Integer>();
 	}
