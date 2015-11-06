@@ -3,6 +3,7 @@ package com.labouardy.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -21,6 +22,7 @@ public class UserStory {
 	private int difficulty;
 	
 	@ManyToOne
+	 @JoinColumn(name="userstory_fk")
 	private Backlog backlog;
 
 	public int getId() {

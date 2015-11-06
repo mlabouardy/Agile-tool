@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,9 +46,13 @@ public class BacklogController {
 	}
 	
 	@RequestMapping(value="/board/project/{id}/backlog/userstory/create",method=RequestMethod.POST)
-	public String createUserStory(HttpSession session, @PathVariable int id, @ModelAttribute("userstory") UserStory userstory){
+	public String createUserStory(@PathVariable int id, @ModelAttribute("userstory") UserStory userstory, BindingResult result){
+		if(result.hasErrors()){
+			return "create-userstory";
+		}
 		Backlog backlog=backlogService.findOneById(id);
-		userReposityService.save(userstory, backlog);
+		userstory.setBacklog(backlog);
+		userReposityService.save(userstory);
 		return "backlog";	
 	}
 }

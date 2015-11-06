@@ -26,4 +26,8 @@ public class BacklogService {
 	public Backlog findOneById(int id) {
 		return backlogRepository.findOne(id);
 	}
+
+	public void save(Backlog backlog) {
+		backlogRepository.save(backlog);
+	}
 }

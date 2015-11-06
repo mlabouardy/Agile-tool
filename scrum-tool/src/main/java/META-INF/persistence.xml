@@ -6,5 +6,6 @@
 		<class>com.labouardy.entity.Project</class>
 		<class>com.labouardy.entity.Backlog</class>
 		<class>com.labouardy.entity.UserStory</class>
+		<class>com.labouardy.entity.Team</class>
 	</persistence-unit>
 </persistence>

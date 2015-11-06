@@ -18,8 +18,9 @@ public class Backlog {
 	@OneToOne
 	private Project project;
 	
-	@OneToMany(targetEntity=UserStory.class,mappedBy="backlog")
+	@OneToMany(mappedBy="backlog")
 	private List<UserStory> userstories;
+	
 
 	public int getId() {
 		return id;
