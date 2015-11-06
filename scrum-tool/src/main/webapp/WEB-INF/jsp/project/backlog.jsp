@@ -19,9 +19,60 @@
 		</div>
 
 	</div>
-	<div class="row">
-		Create
+	<div class="row border-bottom white-bg dashboard-header">
+	<div class="col-sm-3">
+		<a class="btn btn-success" href="/board/project/${sessionScope.id}/backlog/userstory/create.html"><i class="fa fa-plus"></i> Create User Story</a>
+		</div>
 	</div>
+	
+	<div class="wrapper wrapper-content animated fadeInRight">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-title">
+						<h5>User stories</h5>
+						<div class="ibox-tools">
+							<a class="collapse-link"> <i class="fa fa-chevron-up"></i>
+							</a>
+						</div>
+					</div>
+					<div class="ibox-content">
+
+						<div class="table-responsive">
+							<table class="table table-striped table-bordered table-hover">
+								<thead>
+									<tr>
+										<th>Tag</th>
+										<th>Name</th>
+										<th>Priority</th>
+										<th>Difficulty</th>
+										<th>Dependancies</th>
+										<th>Operations</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Moa</td>
+										<td>Model</td>
+										<td>4</td>
+										<td>1</td>
+										<td>2</td>
+										<td style="width:95px">
+											<div class="button-group">
+												<a class="btn btn-success btn-xs"><i class="fa fa-folder-open-o"></i></a>
+												<a class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i></a>
+												<a class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></a>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
 		
 		</div>
 	<div class="footer">

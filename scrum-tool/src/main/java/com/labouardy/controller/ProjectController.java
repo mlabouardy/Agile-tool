@@ -57,7 +57,7 @@ public class ProjectController {
 			return "board";
 		}
 		model.addAttribute("project", project);
-		session.setAttribute("project-id", id);
+		session.setAttribute("id", id);
 		return "view-project";
 	}
 }
