@@ -39,6 +39,7 @@ public class User {
 	@OneToMany(targetEntity=Project.class,mappedBy="user")
 	private List<Project> projects;
 	
+	
 	public int getId() {
 		return id;
 	}

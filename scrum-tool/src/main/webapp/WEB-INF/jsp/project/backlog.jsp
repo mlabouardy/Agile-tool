@@ -3,6 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/security/tags"
 	prefix="security"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="true"%>
 
 <div id="wrapper">
@@ -51,20 +52,22 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td>Moa</td>
-										<td>Model</td>
-										<td>4</td>
-										<td>1</td>
-										<td>2</td>
-										<td style="width:95px">
-											<div class="button-group">
-												<a class="btn btn-success btn-xs"><i class="fa fa-folder-open-o"></i></a>
-												<a class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i></a>
-												<a class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></a>
-											</div>
-										</td>
-									</tr>
+									<c:forEach items="${userstories}" var="userstory">
+										<tr>
+											<td>${userstory.tag}</td>
+											<td>${userstory.name}</td>
+											<td>${userstory.priority}</td>
+											<td>${userstory.difficulty}</td>
+											<td>2</td>
+											<td style="width:95px">
+												<div class="button-group">
+													<a class="btn btn-success btn-xs"><i class="fa fa-folder-open-o"></i></a>
+													<a class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i></a>
+													<a class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></a>
+												</div>
+											</td>
+										</tr>
+									</c:forEach>
 								</tbody>
 							</table>
 						</div>

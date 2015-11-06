@@ -18,33 +18,33 @@
 
 	</div>
 	<div class="row border-bottom white-bg dashboard-header">
-		<form >
+		<form:form commandName="userstory">
 			<div class="col-md-6">
 			<div class="form-group">
 				<label>Tag:</label> 
-				<input  class="form-control" placeholder="Enter project tag"/>
+				<form:input path="tag" cssClass="form-control" placeholder="Enter project tag"/>
 			</div>
 			</div>
 			<div class="col-md-6">
 			<div class="form-group">
 				<label>Name:</label> 
-				<input  class="form-control" placeholder="Enter project name"/>
+				<form:input path="name" cssClass="form-control" placeholder="Enter project name"/>
 			</div>
 			</div>
 			<div class="col-md-6">
 				<div class="form-group">
 					<label>Priority:</label> 
-					<select class="form-control">
-						<option>High</option>
-						<option>Medium</option>
-						<option>Low</option>
-					</select>
+					<form:select path="priority" cssClass="form-control">
+						<form:option value="1">High</form:option>
+						<form:option value="2">Medium</form:option>
+						<form:option value="3">Low</form:option>
+					</form:select>
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="form-group">
 					<label>Difficulty:</label> 
-					<input  class="form-control" placeholder="Enter project difficulty"/>
+					<form:input path="difficulty" cssClass="form-control" placeholder="Enter project difficulty"/>
 				</div>
 			</div>
 			<div class="col-md-12">
@@ -60,7 +60,7 @@
 			<div class="col-md-6">
 				<button type="submit" class="btn btn-success">Create</button>
 			</div>
-		</form>
+		</form:form>
 	</div>
 </div>
 

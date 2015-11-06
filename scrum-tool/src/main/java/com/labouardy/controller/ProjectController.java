@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.labouardy.entity.Project;
 import com.labouardy.entity.User;
 import com.labouardy.repository.UserRepository;
+import com.labouardy.service.BacklogService;
 import com.labouardy.service.ProjectService;
 import com.labouardy.service.UserService;
 
@@ -28,6 +29,9 @@ public class ProjectController {
 	
 	@Autowired
 	private ProjectService projectService;
+	
+	@Autowired
+	private BacklogService backlogService;
 	
 	@ModelAttribute("project")
 	public Project constructProject(){
@@ -47,6 +51,7 @@ public class ProjectController {
 		String email=principal.getName();
 		User user=userService.findUserByEmail(email);
 		projectService.save(user, project);
+		backlogService.save(project);
 		return "board";
 	}
 	

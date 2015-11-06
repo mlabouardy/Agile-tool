@@ -4,5 +4,7 @@
 		<class>com.labouardy.entity.Role</class>
 		<class>com.labouardy.entity.User</class>
 		<class>com.labouardy.entity.Project</class>
+		<class>com.labouardy.entity.Backlog</class>
+		<class>com.labouardy.entity.UserStory</class>
 	</persistence-unit>
 </persistence>
