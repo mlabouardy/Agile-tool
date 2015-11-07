@@ -14,12 +14,12 @@ import com.labouardy.repository.UserStoryRepository;
 
 @Service
 @Transactional
-public class UserRepositoryService {
+public class UserStoryService {
 
 	@Autowired
 	private UserStoryRepository userStoryRepository;
 	
 	public void save(UserStory userStory){
-		userStoryRepository.save(userStory);
+		userStoryRepository.saveAndFlush(userStory);
 	}
 }

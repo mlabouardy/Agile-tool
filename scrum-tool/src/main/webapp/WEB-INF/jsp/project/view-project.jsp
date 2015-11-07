@@ -15,7 +15,7 @@
 			<div
 		class="row border-bottom white-bg dashboard-header padding-container">
 		<div class="col-lg-10">
-			<h2>Project ${sessionScope.id}</h2>
+			<h2>Project ${sessionScope.idproject}</h2>
 			<ol class="breadcrumb">
 				<li><a href="<spring:url value="/board.html"/>">Dashboard</a></li>
 				<li class="active"><strong>Projects</strong></li>

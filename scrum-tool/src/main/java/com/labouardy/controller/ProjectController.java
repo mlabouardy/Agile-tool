@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.labouardy.entity.Backlog;
 import com.labouardy.entity.Project;
 import com.labouardy.entity.User;
 import com.labouardy.repository.UserRepository;
@@ -51,7 +52,9 @@ public class ProjectController {
 		String email=principal.getName();
 		User user=userService.findUserByEmail(email);
 		projectService.save(user, project);
-		backlogService.save(project);
+		Backlog backlog=new Backlog();
+		backlog.setProject(project);
+		backlogService.save(backlog);
 		return "board";
 	}
 	
@@ -62,7 +65,7 @@ public class ProjectController {
 			return "board";
 		}
 		model.addAttribute("project", project);
-		session.setAttribute("id", id);
+		session.setAttribute("idproject", id);
 		return "view-project";
 	}
 }

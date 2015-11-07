@@ -5,7 +5,7 @@
 	<div
 		class="row border-bottom white-bg dashboard-header padding-container">
 		<div class="col-sm-3">
-			<a class="btn btn-success" href="<spring:url value="/board/project/${sessionScope.id}/backlog.html"/>"><i
+			<a class="btn btn-success" href="<spring:url value="/board/project/${sessionScope.idproject}/backlog.html"/>"><i
 				class="fa fa-arrow-left"></i> Previous</a>
 		</div>
 	</div>

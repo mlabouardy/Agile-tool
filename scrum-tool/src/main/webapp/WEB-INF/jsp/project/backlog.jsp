@@ -22,7 +22,7 @@
 	</div>
 	<div class="row border-bottom white-bg dashboard-header">
 	<div class="col-sm-3">
-		<a class="btn btn-success" href="/board/project/${sessionScope.id}/backlog/userstory/create.html"><i class="fa fa-plus"></i> Create User Story</a>
+		<a class="btn btn-success" href="/board/project/${sessionScope.idproject}/backlog/userstory/create.html"><i class="fa fa-plus"></i> Create User Story</a>
 		</div>
 	</div>
 	

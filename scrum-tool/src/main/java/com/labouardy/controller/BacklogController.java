@@ -14,18 +14,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.labouardy.entity.Backlog;
+import com.labouardy.entity.Project;
 import com.labouardy.entity.UserStory;
 import com.labouardy.service.BacklogService;
-import com.labouardy.service.UserRepositoryService;
+import com.labouardy.service.UserStoryService;
 
 @Controller
 public class BacklogController {
 
 	@Autowired
-	private UserRepositoryService userReposityService;
+	private UserStoryService userStoryService;
 	
 	@Autowired
 	private BacklogService backlogService;
+	
+	@ModelAttribute("userstory")
+	public UserStory constructUserStory(){
+		return new UserStory();
+	}
 	
 	@RequestMapping("/board/project/{id}/backlog")
 	public String backlog(HttpSession session, @PathVariable int id, Model model){
@@ -40,19 +46,19 @@ public class BacklogController {
 		return "create-userstory";	
 	}
 	
-	@ModelAttribute("userstory")
-	public UserStory constructUserStory(){
-		return new UserStory();
-	}
-	
 	@RequestMapping(value="/board/project/{id}/backlog/userstory/create",method=RequestMethod.POST)
-	public String createUserStory(@PathVariable int id, @ModelAttribute("userstory") UserStory userstory, BindingResult result){
+	public String createUserStory(@ModelAttribute("userstory") UserStory userstory, BindingResult result,@PathVariable int id){
 		if(result.hasErrors()){
 			return "create-userstory";
 		}
 		Backlog backlog=backlogService.findOneById(id);
-		userstory.setBacklog(backlog);
-		userReposityService.save(userstory);
+		UserStory us=new UserStory();
+		us.setName(userstory.getName());
+		us.setPriority(userstory.getPriority());
+		us.setTag(userstory.getTag());
+		us.setDifficulty(userstory.getDifficulty());
+		us.setBacklog(backlog);
+		userStoryService.save(us);
 		return "backlog";	
 	}
 }

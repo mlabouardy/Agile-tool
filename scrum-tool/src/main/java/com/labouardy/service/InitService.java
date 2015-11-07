@@ -7,8 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.labouardy.entity.Backlog;
+import com.labouardy.entity.Project;
 import com.labouardy.entity.Role;
 import com.labouardy.entity.User;
+import com.labouardy.entity.UserStory;
 
 @Service
 @Transactional
@@ -19,6 +22,15 @@ public class InitService {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private ProjectService projectService;
+	
+	@Autowired
+	private BacklogService backlogService;
+	
+	@Autowired
+	private UserStoryService userStoryService;
 	
 	@PostConstruct
 	public void init(){
@@ -61,6 +73,33 @@ public class InitService {
 		userService.save(product);
 		userService.save(master);
 		userService.save(team);
+		
+		Project project=new Project();
+		project.setName("Gestion d'ateliers");
+		project.setDescription("Bla bla bla");
+		project.setUser(product);
+		projectService.save(project);
+		
+		Backlog backlog=new Backlog();
+		backlog.setProject(project);
+		backlogService.save(backlog);
+		
+		UserStory us1=new UserStory();
+		us1.setName("Med");
+		us1.setTag("fd");
+		us1.setPriority(1);
+		us1.setDifficulty(2);
+		us1.setBacklog(backlog);
+		
+		UserStory us2=new UserStory();
+		us2.setName("AA");
+		us2.setTag("fdsdsd");
+		us2.setPriority(1);
+		us2.setDifficulty(2);
+		us2.setBacklog(backlog);
+		
+		userStoryService.save(us1);
+		userStoryService.save(us2);
 		
 		
 	}

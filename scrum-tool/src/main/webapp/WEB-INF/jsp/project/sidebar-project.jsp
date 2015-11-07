@@ -22,10 +22,10 @@
 				</div>
 				<div class="logo-element">AT</div>
 			</li>
-			<li class="active"><a href="/board/project/${sessionScope.id}.html"><i
+			<li class="active"><a href="/board/project/${sessionScope.idproject}.html"><i
 					class="fa fa-th-large"></i> <span class="nav-label">Dashboard</span>
 			</a></li>
-			<li><a href="/board/project/${sessionScope.id}/backlog.html"><i
+			<li><a href="/board/project/${sessionScope.idproject}/backlog.html"><i
 					class="fa fa-table"></i> <span class="nav-label">Backlog</span></a></li>
 			<li><a href="#"><i class="fa fa-users"></i> <span
 					class="nav-label">Scrum Masters</span></a></li>

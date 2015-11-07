@@ -25,5 +25,9 @@ public class ProjectService {
 	public Project findOne(int id) {
 		return projectRepository.findOne(id);
 	}
+
+	public void save(Project project) {
+		projectRepository.save(project);
+	}
 	
 }

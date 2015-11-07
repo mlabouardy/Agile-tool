@@ -2,6 +2,7 @@ package com.labouardy.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -10,7 +11,7 @@ import javax.persistence.ManyToOne;
 public class UserStory {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	
 	private String tag;
@@ -22,7 +23,6 @@ public class UserStory {
 	private int difficulty;
 	
 	@ManyToOne
-	 @JoinColumn(name="userstory_fk")
 	private Backlog backlog;
 
 	public int getId() {

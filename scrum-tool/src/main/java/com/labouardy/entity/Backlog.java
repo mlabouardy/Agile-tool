@@ -2,11 +2,13 @@ package com.labouardy.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
 
 @Entity
 public class Backlog {
@@ -18,7 +20,7 @@ public class Backlog {
 	@OneToOne
 	private Project project;
 	
-	@OneToMany(mappedBy="backlog")
+	@OneToMany(targetEntity=UserStory.class,mappedBy="backlog")
 	private List<UserStory> userstories;
 	
 
