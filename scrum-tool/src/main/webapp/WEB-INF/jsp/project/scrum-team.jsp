@@ -23,7 +23,7 @@
 		<div class="row border-bottom white-bg dashboard-header">
 			<div class="col-sm-3">
 				<a class="btn btn-success"
-					href="/board/project/${sessionScope.idproject}/backlog/userstory/create.html"><i
+					href="/board/project/${sessionScope.idproject}/scrum-master/create.html"><i
 					class="fa fa-plus"></i> New member</a>
 			</div>
 		</div>
