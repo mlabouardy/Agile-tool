@@ -60,5 +60,12 @@
     	 <put-attribute name="body" value="/WEB-INF/jsp/project/create-userstory.jsp" />
     	 <put-attribute name="current" value="index"></put-attribute>
     </definition>
+    
+    <definition name="scrum-team" extends="common">
+    	 <put-attribute name="assets" value="/WEB-INF/layouts/assets-board.jsp" />
+         <put-attribute name="title" value="Scrum Team - Scrum Master" />
+    	 <put-attribute name="body" value="/WEB-INF/jsp/project/scrum-team.jsp" />
+    	 <put-attribute name="current" value="index"></put-attribute>
+    </definition>
 	   
 </tiles-definitions>

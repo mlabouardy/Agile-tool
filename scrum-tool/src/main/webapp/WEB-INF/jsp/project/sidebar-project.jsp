@@ -27,7 +27,7 @@
 			</a></li>
 			<li><a href="/board/project/${sessionScope.idproject}/backlog.html"><i
 					class="fa fa-table"></i> <span class="nav-label">Backlog</span></a></li>
-			<li><a href="#"><i class="fa fa-users"></i> <span
+			<li><a href="/board/project/${sessionScope.idproject}/scrum-master.html"><i class="fa fa-users"></i> <span
 					class="nav-label">Scrum Masters</span></a></li>
 			<li><a href="/team.html"><i class="fa fa-bar-chart-o"></i> <span
 					class="nav-label">Graphs</span></a></li>
