@@ -22,4 +22,8 @@ public class UserStoryService {
 	public void save(UserStory userStory){
 		userStoryRepository.saveAndFlush(userStory);
 	}
+
+	public List<UserStory> findAll() {
+		return userStoryRepository.findAll();
+	}
 }

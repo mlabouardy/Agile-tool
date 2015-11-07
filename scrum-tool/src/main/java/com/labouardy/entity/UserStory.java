@@ -1,11 +1,15 @@
 package com.labouardy.entity;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
 public class UserStory {
@@ -24,6 +28,17 @@ public class UserStory {
 	
 	@ManyToOne
 	private Backlog backlog;
+	
+	@ManyToMany
+	private List<UserStory> dependancies;
+
+	public List<UserStory> getDependancies() {
+		return dependancies;
+	}
+
+	public void setDependancies(List<UserStory> dependancies) {
+		this.dependancies = dependancies;
+	}
 
 	public int getId() {
 		return id;

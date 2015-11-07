@@ -58,7 +58,7 @@
 											<td>${userstory.name}</td>
 											<td>${userstory.priority}</td>
 											<td>${userstory.difficulty}</td>
-											<td>2</td>
+											<td>${userstory.dependancies}</td>
 											<td style="width:95px">
 												<div class="button-group">
 													<a class="btn btn-success btn-xs"><i class="fa fa-folder-open-o"></i></a>

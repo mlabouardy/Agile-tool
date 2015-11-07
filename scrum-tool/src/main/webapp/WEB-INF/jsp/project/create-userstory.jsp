@@ -1,5 +1,6 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="true"%>
 <div class="container">
 	<div
@@ -13,7 +14,7 @@
 	<div
 		class="row  border-bottom white-bg dashboard-header padding-container">
 		<div class="col-sm-3">
-			<h2>New user story</h2>
+			<h2>New user story </h2>
 		</div>
 
 	</div>
@@ -51,9 +52,9 @@
 				<div class="form-group">
 					<label>Dependancies:</label> 
 					<select class="selectpicker form-control" data-style="btn-primary" multiple data-selected-text-format="count>3">
-						<option>High</option>
-						<option>Medium</option>
-						<option>Low</option>
+						<c:forEach items="${dependancies}" var="dependancy">
+							<option>${dependancy.tag}</option>
+						</c:forEach>
 					</select>
 				</div>
 			</div>

@@ -42,7 +42,9 @@ public class BacklogController {
 	}
 	
 	@RequestMapping("/board/project/{id}/backlog/userstory/create")
-	public String userStoryForm(HttpSession session){
+	public String userStoryForm(HttpSession session,Model model){
+		List<UserStory> userstories=userStoryService.findAll();
+		model.addAttribute("dependancies", userstories);
 		return "create-userstory";	
 	}
 	

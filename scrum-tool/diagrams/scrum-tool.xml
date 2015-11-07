@@ -2,9 +2,9 @@
 	<entity>
 		<entity-name>com.labouardy.entity.UserStory</entity-name>
 		<entity-width>120</entity-width>
-		<entity-height>206</entity-height>
-		<entity-X-Coordinate>429</entity-X-Coordinate>
-		<entity-Y-Coordinate>458</entity-Y-Coordinate>
+		<entity-height>226</entity-height>
+		<entity-X-Coordinate>355</entity-X-Coordinate>
+		<entity-Y-Coordinate>530</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>
@@ -33,22 +33,22 @@
 	</entity>
 
 	<entity>
-		<entity-name>com.labouardy.entity.Project</entity-name>
+		<entity-name>com.labouardy.entity.User</entity-name>
 		<entity-width>120</entity-width>
-		<entity-height>166</entity-height>
-		<entity-X-Coordinate>140</entity-X-Coordinate>
-		<entity-Y-Coordinate>405</entity-Y-Coordinate>
+		<entity-height>226</entity-height>
+		<entity-X-Coordinate>404</entity-X-Coordinate>
+		<entity-Y-Coordinate>19</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>
 	</entity>
 
 	<entity>
-		<entity-name>com.labouardy.entity.User</entity-name>
+		<entity-name>com.labouardy.entity.Project</entity-name>
 		<entity-width>120</entity-width>
-		<entity-height>226</entity-height>
-		<entity-X-Coordinate>404</entity-X-Coordinate>
-		<entity-Y-Coordinate>19</entity-Y-Coordinate>
+		<entity-height>166</entity-height>
+		<entity-X-Coordinate>140</entity-X-Coordinate>
+		<entity-Y-Coordinate>405</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>
