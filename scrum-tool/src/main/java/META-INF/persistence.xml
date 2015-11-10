@@ -7,7 +7,7 @@
 		<class>com.bordeaux.entity.user.ScrumMaster</class>
 		<class>com.bordeaux.entity.user.ScrumTeam</class>
 		<class>com.bordeaux.entity.Project</class>
-		<class>com.bordeaux.entity.Task</class>
+			<class>com.bordeaux.entity.Task</class>
 		<class>com.bordeaux.entity.BackLog</class>
 		<class>com.bordeaux.entity.UserStory</class>
 		<class>com.bordeaux.entity.UserStoryDependencies</class>

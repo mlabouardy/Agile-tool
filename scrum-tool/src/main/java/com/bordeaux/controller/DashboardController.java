@@ -1,21 +1,29 @@
 package com.bordeaux.controller;
 
 import java.security.Principal;
+import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.bordeaux.entity.Role.RoleType;
+import com.bordeaux.entity.Task;
+import com.bordeaux.entity.UserStory;
 import com.bordeaux.entity.user.ProductOwner;
 import com.bordeaux.entity.user.ScrumMaster;
 import com.bordeaux.entity.user.ScrumTeam;
 import com.bordeaux.entity.user.User;
 import com.bordeaux.form.backlog.BackLogForm;
+import com.bordeaux.form.backlog.TaskForm;
 import com.bordeaux.form.backlog.UserStoryForm;
 import com.bordeaux.service.BackLogService;
+import com.bordeaux.service.TaskService;
 import com.bordeaux.service.user.ProductOwnerService;
 import com.bordeaux.service.user.ScrumMasterService;
 import com.bordeaux.service.user.ScrumTeamService;
@@ -60,7 +68,8 @@ public class DashboardController {
 		
 		else if (user.getRole().getName().equals(RoleType.MASTER.toString())){
 			ScrumMaster scrumMaster = scrumMasterService.findUserByEmail(email);
-			//....
+			Collection<UserStory> userStories= scrumMaster.getUserStories();
+			model.addAttribute("userStories", userStories);
 		}
 		
 		else if (user.getRole().getName().equals(RoleType.TEAM.toString())){
@@ -101,6 +110,8 @@ public class DashboardController {
 		return "board";
 	}
 	
+	
+	
 	@ModelAttribute("task")
 	public Task constructTask(){
 		return new Task();
@@ -108,10 +119,8 @@ public class DashboardController {
 	
 	@RequestMapping(value="/addtask/{id}",method=RequestMethod.POST)
 	public String addTask(@ModelAttribute("task") Task task, @PathVariable("id") int id){
-		 
 		taskService.saveTaskInUserStory(task, id);
 		return "board";
-		
 	}
 	
 	@RequestMapping(value="/addtask/{id}")
@@ -119,11 +128,17 @@ public class DashboardController {
 		return "addtask";
 	}
 	
-	@RequestMapping(value="/addtask/{id}" , method=RequestMethod.GET)
-	public String ListTask(TaskForm taskForm,Model model){
-		Collection<TaskForm> taskForms=taskService.getTaskForms();
-	    model.addAttribute("taskForms", taskForms);
-	    return "addtask";
+	@RequestMapping(value="/listtask/{id}" , method=RequestMethod.GET)
+	public String ListTask(TaskForm taskForm,Model model,@PathVariable("id") int id){
+		//List<TaskForm> taskForms=taskService.getTaskForms();
+		List<Task> taskForms=taskService.getUserStory(id);
+		System.out.println("id id id id id "+id + taskForms);
+		//taskService.getUserStory(id);
+	   /* for (Task tas: taskForms)
+	    {
+	    	System.out.println(" aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa "+tas.getDescription());
+	    }*/
+		model.addAttribute("taskForms", taskForms);
+	    return "listtask";
 	}
-	
 }

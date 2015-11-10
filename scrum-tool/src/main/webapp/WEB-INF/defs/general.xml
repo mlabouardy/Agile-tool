@@ -9,12 +9,24 @@
         <put-attribute name="assets" value="/WEB-INF/layouts/assets.jsp" />
     </definition>
     
-	<definition name="addtask" extends="common">
+     <definition name="listtask" extends="common">
+         <put-attribute name="title" value="Scrum Tool - Home page" />
+    	 <put-attribute name="body" value="/WEB-INF/jsp/listtask.jsp" />
+    	 <put-attribute name="current" value="index"></put-attribute>
+    </definition>
+    
+      <definition name="back" extends="common">
+         <put-attribute name="title" value="Scrum Tool - Home page" />
+    	 <put-attribute name="body" value="/WEB-INF/jsp/task.jsp" />
+    	 <put-attribute name="current" value="index"></put-attribute>
+    </definition>
+    
+    <definition name="addtask" extends="common">
          <put-attribute name="title" value="Scrum Tool - Home page" />
     	 <put-attribute name="body" value="/WEB-INF/jsp/addtask.jsp" />
     	 <put-attribute name="current" value="index"></put-attribute>
     </definition>
-	
+    
     <definition name="backlog" extends="common">
          <put-attribute name="title" value="Scrum Tool - Home page" />
     	 <put-attribute name="body" value="/WEB-INF/jsp/backlog.jsp" />

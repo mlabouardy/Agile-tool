@@ -28,22 +28,5 @@
 				</div>			
 			</div>	
 
-	</f:form>	
-	 
-			<table class="table table-bordered table-hover">
-					<thead>
-						<tr>
-							<th>Id</th>
-							<th>Description</th>
-						</tr>
-					</thead>
-
-					<c:forEach var="taskForm"
-						items="${taskForms}">
-						<tr>
-							<td>${taskForm.getId()}</td>
-							<td>${taskForm.getDescription()}</td>						
-						</tr>
-					</c:forEach>
-				</table>		
+	</f:form>			
 </div>

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.bordeaux.entity.Task;
 import com.bordeaux.entity.UserStory;
+import com.bordeaux.entity.UserStoryDependencies;
 import com.bordeaux.form.backlog.TaskForm;
 import com.bordeaux.repository.TaskRepository;
 import com.bordeaux.repository.UserStoryRepository;
@@ -25,21 +26,33 @@ public class TaskService {
 	public void save(Task task) {
 		taskRepository.save(task);
 	}
+	
+	public void removetask(int taskId){
+
+		taskRepository.delete(taskId);
+	}
 
 	public void saveTaskInUserStory(Task task, int id) {
-		 
 		UserStory userStory=userStoryRepository.findOne(id);
-		List<Task> tmp=userStory.getTasks();
-		tmp.add(task);
-		userStory.setTasks(tmp);
-		userStoryRepository.save(userStory);
+		task.setUserStory(userStory);
+		//System.out.println("user story "+ userStory);
 		taskRepository.save(task);
 		 
 	}
 	
-	public Collection<TaskForm> getTaskForms() {
+	public List<Task> getUserStory(int id){
+		UserStory userStory = userStoryRepository.findOne(id);
+		//System.out.println("user story story "+ userStory);
+        List<Task> tasks=taskRepository.findAll();
+        //=userStory.getTasks();
+		//System.out.println("++++++++++++++++++++"+tasks);
+		return tasks;
+		
+	}
+	
+	public List<TaskForm> getTaskForms() {
 
-		Collection<TaskForm> taskForms = new ArrayList<TaskForm>();
+		List<TaskForm> taskForms = new ArrayList<TaskForm>();
 		List<Task> tasks = taskRepository.findAll();
 
 		for (Task task : tasks) {

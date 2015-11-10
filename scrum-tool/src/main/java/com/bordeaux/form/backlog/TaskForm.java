@@ -20,7 +20,14 @@ public class TaskForm {
 	
 	private String color;
 	private String exception;
+	private String userStoryId;
 	
+	public String getuserStoryId() {
+		return userStoryId;
+	}
+	public void setuserStoryId(String userStoryId) {
+		this.userStoryId = userStoryId;
+	}
    
 	public TaskForm() {
 	

@@ -34,6 +34,18 @@ public class UserStoryForm {
 	private int difficulty;
 
 	private String exception;
+	
+	/****************************************************/
+	 private List<TaskForm> taskForms;
+		
+		public List<TaskForm> getTaskForms() {
+			return taskForms;
+		}
+		public void setTaskForms(List<TaskForm> taskForms) {
+			this.taskForms = taskForms;
+		}
+		/************************************************/
+	
 
 	// dependance choisi par l'utilisateur durant la saisie
 	private List<Integer> selectedDependencies;
@@ -50,19 +62,6 @@ public class UserStoryForm {
 	// le Scrum Master selectionne
 	private int selectedScrumMasterId;
 
-	/****************************************************/
-	 private List<TaskForm> taskForms;
-		
-		public List<TaskForm> getTaskForms() {
-			return taskForms;
-		}
-		public void setTaskForms(List<TaskForm> taskForms) {
-			this.taskForms = taskForms;
-		}
-		/************************************************/
-	
-	
-	
 	public UserStoryForm() {
 		this.dependencies = new ArrayList<Integer>();
 	}

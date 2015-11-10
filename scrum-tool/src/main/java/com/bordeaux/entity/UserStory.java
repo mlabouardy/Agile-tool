@@ -1,6 +1,5 @@
 package com.bordeaux.entity;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -27,19 +26,20 @@ public class UserStory {
 	private int priority;
 
 	private int difficulty;
-
-	@OneToMany
-	private List<Task> tasks;
+	
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	private Collection<Task> tasks;
 
 	public UserStory() {
 	}
-	public List<Task> getTasks() {
+	public Collection<Task> getTasks() {
 		return tasks;
 	}
-	public void setTasks(List<Task> tasks) {
+	public void setTasks(Collection<Task> tasks) {
 		this.tasks = tasks;
 	}
 	
+
 	public int getId() {
 		return id;
 	}
