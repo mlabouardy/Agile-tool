@@ -11,6 +11,7 @@ import com.bordeaux.entity.BackLog;
 import com.bordeaux.entity.Github;
 import com.bordeaux.entity.Project;
 import com.bordeaux.entity.Role.RoleType;
+import com.bordeaux.entity.UserStory;
 import com.bordeaux.entity.user.ProductOwner;
 import com.bordeaux.entity.user.ScrumMaster;
 import com.bordeaux.entity.user.ScrumTeam;
@@ -28,6 +29,15 @@ public class InitService {
 
 	@Autowired
 	private ProjectService projectService;
+	
+	@Autowired
+	private UserStoryService userStoryService;
+	
+	@Autowired
+	private BackLogService backlogService;
+	
+	@Autowired
+	private GithubService githubService;
 	
 	@PostConstruct
 	public void init() {
@@ -50,7 +60,6 @@ public class InitService {
 		product2.setFirstname("Product2");
 		product2.setLastname("Owner");
 		product2.setPassword(encoder.encode("product"));
-		product2.setProject(new Project());
 
 		ScrumMaster master1 = new ScrumMaster();
 		master1.setEmail("master1@labouardy.com");
@@ -84,10 +93,6 @@ public class InitService {
 		userService.save(master3);
 		userService.save(team);
 		
-		Project project=new Project();
-		project.setBackLog(new BackLog());
-		project.setGithub(new Github());
 		
-
 	}
 }

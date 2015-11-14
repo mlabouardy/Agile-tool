@@ -16,6 +16,6 @@ public class ProjectService {
 	private ProjectRepository projectRepository;
 	
 	public void save(Project project){
-		projectRepository.save(project);
+		projectRepository.saveAndFlush(project);
 	}
 }

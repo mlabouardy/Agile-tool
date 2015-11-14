@@ -23,4 +23,9 @@ public class UserStoryService {
 	public UserStory getUserStory(int userStoryID){
 		return userStoryRepository.findOne(userStoryID);
 	}
+
+
+	public void save(UserStory userStory) {
+		userStoryRepository.save(userStory);
+	}
 }

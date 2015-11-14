@@ -229,5 +229,9 @@ public class BackLogService {
 		return userStory;
 	}
 
+	public void save(BackLog backlog) {
+		backLogRepository.save(backlog);
+	}
+
 	
 }
