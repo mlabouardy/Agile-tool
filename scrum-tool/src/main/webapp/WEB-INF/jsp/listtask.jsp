@@ -5,20 +5,30 @@
 
 <div class="container padding-container">
 
+	<c:choose>
+	
+		<c:when test="${fn:length(tasks) > 0}">
 			<table class="table table-bordered table-hover">
-					<thead>
-						<tr>
-							<th>Id</th>
-							<th>Description</th>
-						</tr>
-					</thead>
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Description</th>
+					</tr>
+				</thead>
+		
+				<c:forEach var="task" items="${tasks}">
+					<tr>
+						<td>${task.getId()}</td>
+						<td>${task.getDescription()}</td>						
+					</tr>
+				</c:forEach>
+			</table>	
+		</c:when>
+	
+		<c:otherwise>
+			<p>Task list is empty</p>
+		</c:otherwise>
+	
+	</c:choose>
 
-					<c:forEach var="taskForm"
-						items="${taskForms}">
-						<tr>
-							<td>${taskForm.getId()}</td>
-							<td>${taskForm.getDescription()}</td>						
-						</tr>
-					</c:forEach>
-				</table>		
 </div>

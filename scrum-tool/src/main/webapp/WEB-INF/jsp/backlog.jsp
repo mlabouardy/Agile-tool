@@ -7,7 +7,7 @@
 <div class="panel panel-success">
 
 	<div class="panel-heading">
-		<f:form modelAttribute="backLogForm" method="post" action="board.html">
+		<f:form modelAttribute="backLogForm" method="post" action="product.html">
 			<f:hidden path="typeForm.type" value="add" />
 			<input class="btn btn-success" type="submit" value="Add new user story" />
 		</f:form>
@@ -37,7 +37,7 @@
 
 						<tr>
 
-							<td><f:form modelAttribute="backLogForm" method="post" action="board.html">
+							<td><f:form modelAttribute="backLogForm" method="post" action="product.html">
 									<f:hidden path="typeForm.type" value="remove" />
 									<f:hidden path="typeForm.id" value="${userStoryForm.getId()}" />
 									<input class="btn btn-danger btn-block" type="submit" value="Remove" />
@@ -45,7 +45,7 @@
 							</td>
 
 							<td>
-								<f:form modelAttribute="backLogForm" method="post" action="board.html">
+								<f:form modelAttribute="backLogForm" method="post" action="product.html">
 									<f:hidden path="typeForm.type" value="edit" />
 									<f:hidden path="typeForm.id" value="${userStoryForm.getId()}" />
 									<input class="btn btn-info btn-block" type="submit" value="Edit" />

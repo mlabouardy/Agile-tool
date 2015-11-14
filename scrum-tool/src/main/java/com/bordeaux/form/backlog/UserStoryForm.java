@@ -11,6 +11,8 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.bordeaux.form.task.TaskForm;
+
 public class UserStoryForm {
 
 	private int id;

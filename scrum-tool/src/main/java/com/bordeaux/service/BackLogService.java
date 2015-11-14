@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -148,7 +149,8 @@ public class BackLogService {
 		BackLog backLog = getBackLog();
 
 		Collection<UserStoryForm> userStoriesForm = new ArrayList<UserStoryForm>();
-		Collection<UserStory> userStories = backLog.getUserStories();
+		Set<UserStory> userStories = backLog.getUserStories();
+		
 		Map<Integer, ArrayList<Integer>> dependenciesID = getDependenciesID();
 
 		for (UserStory userStory : userStories) {

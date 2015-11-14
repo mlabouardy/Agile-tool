@@ -1,7 +1,8 @@
 package com.bordeaux.entity;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -21,21 +22,21 @@ public class BackLog {
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "backLog_id", nullable = false)
-	private Collection<UserStory> userStories;
+	private Set<UserStory> userStories;
 
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	@JoinColumn(name="backLog_id", nullable=false)
 	private Collection<UserStoryDependencies> dependencies;
 	
 	public BackLog() {
-		userStories = new ArrayList<UserStory>();
+		userStories = new HashSet<UserStory>();
 	}
 
 	public int getId() {
 		return id;
 	}
 	
-	public Collection<UserStory> getUserStories() {
+	public Set<UserStory> getUserStories() {
 		return userStories;
 	}
 	

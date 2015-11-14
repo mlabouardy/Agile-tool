@@ -1,7 +1,6 @@
 package com.bordeaux.entity;
 
 import java.util.Collection;
-import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -9,7 +8,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -27,18 +25,20 @@ public class UserStory {
 
 	private int difficulty;
 	
-	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	private Collection<Task> tasks;
 
 	public UserStory() {
+		
 	}
+	
 	public Collection<Task> getTasks() {
 		return tasks;
 	}
+	
 	public void setTasks(Collection<Task> tasks) {
 		this.tasks = tasks;
 	}
-	
 
 	public int getId() {
 		return id;

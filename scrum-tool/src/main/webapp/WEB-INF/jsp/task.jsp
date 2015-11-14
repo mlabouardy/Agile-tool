@@ -6,7 +6,7 @@
 
 <div class="panel panel-success">
 	<div class="panel-body">
-	<c:if test="${fn:length(userStories) > 0}">				
+	<c:if test="${fn:length(scrumMaster.getUserStories()) > 0}">				
 				<table class="table table-bordered table-hover">
 					<thead>
 						<tr>
@@ -18,18 +18,17 @@
 						</tr>
 					</thead>
 
-					<c:forEach var="userStoryForm"
-						items="${userStories}">
+					<c:forEach var="userStory" items="${scrumMaster.getUserStories()}">
 
 						<tr>
-							<td>${userStoryForm.getId()}</td>
-							<td>${userStoryForm.getTag()}</td>
-							<td>${userStoryForm.getDescription()}</td>
+							<td>${userStory.getId()}</td>
+							<td>${userStory.getTag()}</td>
+							<td>${userStory.getDescription()}</td>
 							<td>
-								<a class="btn btn-success" href="addtask/${userStoryForm.getId()}.html">Add task</a>
+								<a class="btn btn-success" href="/addtask/${scrumMaster.getId()}/${userStory.getId()}.html">Add task</a>
 							</td>
 							<td>
-								<a class="btn btn-success" href="listtask/${userStoryForm.getId()}.html">List task</a>
+								<a class="btn btn-success" href="/listtask/${scrumMaster.getId()}/${userStory.getId()}.html">List task</a>
 							</td>
 						</tr>
 

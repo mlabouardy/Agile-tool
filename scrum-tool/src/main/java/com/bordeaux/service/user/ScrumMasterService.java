@@ -23,6 +23,10 @@ public class ScrumMasterService {
 		return scrumMasterRepository.findByEmail(email);
 	}
 
+	public ScrumMaster findUserById(int id) {
+		return scrumMasterRepository.findOneById(id);
+	}
+	
 	public Map<Integer, String> getScrumMasterList() {
 
 		Map<Integer, String> scrumMasterList = new HashMap<Integer, String>();
