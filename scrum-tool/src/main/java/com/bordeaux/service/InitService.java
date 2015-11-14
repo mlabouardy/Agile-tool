@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.bordeaux.entity.BackLog;
+import com.bordeaux.entity.Github;
 import com.bordeaux.entity.Project;
 import com.bordeaux.entity.Role.RoleType;
 import com.bordeaux.entity.user.ProductOwner;
@@ -24,6 +26,9 @@ public class InitService {
 	@Autowired
 	private UserService userService;
 
+	@Autowired
+	private ProjectService projectService;
+	
 	@PostConstruct
 	public void init() {
 
@@ -78,6 +83,11 @@ public class InitService {
 		userService.save(master2);
 		userService.save(master3);
 		userService.save(team);
+		
+		Project project=new Project();
+		project.setBackLog(new BackLog());
+		project.setGithub(new Github());
+		
 
 	}
 }

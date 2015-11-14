@@ -17,6 +17,9 @@ public class Project {
 	@OneToOne(cascade = CascadeType.ALL)
 	private BackLog backLog;
 	
+	@OneToOne
+	private Github github;
+	
 	public Project() {
 		backLog = new BackLog();
 	}
@@ -36,6 +39,16 @@ public class Project {
 	
 	public void setBackLog(BackLog backLog) {
 		this.backLog = backLog;
+	}
+
+
+	public Github getGithub() {
+		return github;
+	}
+
+
+	public void setGithub(Github github) {
+		this.github = github;
 	}
 	
 }
