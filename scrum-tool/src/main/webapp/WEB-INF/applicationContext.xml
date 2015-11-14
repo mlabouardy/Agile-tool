@@ -13,9 +13,9 @@
 	
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost/test" />
+		<property name="url" value="jdbc:mysql://51.254.132.239:3306/scrum_tool" />
 		<property name="username" value="root"></property>
-		<property name="password" value=""></property>
+		<property name="password" value="admin"></property>
 	</bean>
 	
 	<bean

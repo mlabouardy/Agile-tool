@@ -69,5 +69,9 @@
     	 <put-attribute name="current" value="index"></put-attribute>
     </definition>
     
-	   
+	<definition name="github" extends="common">
+         <put-attribute name="title" value="Dashboard - Scrum Master" />
+    	 <put-attribute name="body" value="/WEB-INF/jsp/github.jsp" />
+    	 <put-attribute name="current" value="index"></put-attribute>
+    </definition>
 </tiles-definitions>
