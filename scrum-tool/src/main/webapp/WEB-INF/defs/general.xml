@@ -69,9 +69,18 @@
     	 <put-attribute name="current" value="index"></put-attribute>
     </definition>
     
+    <definition name="burndownChart" extends="common">
+         <put-attribute name="title" value="The Burndown Chart" />
+    	 <put-attribute name="body" value="/WEB-INF/jsp/burndownChart.jsp" />
+    	 <put-attribute name="current" value="index"></put-attribute>
+    </definition>
+    
 	<definition name="github" extends="common">
          <put-attribute name="title" value="Dashboard - Scrum Master" />
     	 <put-attribute name="body" value="/WEB-INF/jsp/github.jsp" />
     	 <put-attribute name="current" value="index"></put-attribute>
     </definition>
+    
+    
+    
 </tiles-definitions>

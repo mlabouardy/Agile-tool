@@ -7,10 +7,13 @@
 		<class>com.bordeaux.entity.user.ScrumMaster</class>
 		<class>com.bordeaux.entity.user.ScrumTeam</class>
 		<class>com.bordeaux.entity.Project</class>
-			<class>com.bordeaux.entity.Task</class>
+		<class>com.bordeaux.entity.Task</class>
 		<class>com.bordeaux.entity.BackLog</class>
 		<class>com.bordeaux.entity.UserStory</class>
 		<class>com.bordeaux.entity.UserStoryDependencies</class>
+		<class>com.bordeaux.entity.Sprint</class>
+		<class>com.bordeaux.entity.StatusTask</class>
+		<class>com.bordeaux.entity.Github</class>
 	</persistence-unit>
 </persistence>
  

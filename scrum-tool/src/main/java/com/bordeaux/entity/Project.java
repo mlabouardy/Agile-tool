@@ -1,10 +1,13 @@
 package com.bordeaux.entity;
 
+import java.util.Collection;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -19,6 +22,10 @@ public class Project {
 	
 	@OneToOne
 	private Github github;
+	
+	@OneToMany
+	private Collection<Sprint> sprintList;
+
 	
 	public Project() {
 		backLog = new BackLog();
@@ -50,5 +57,15 @@ public class Project {
 	public void setGithub(Github github) {
 		this.github = github;
 	}
+	
+	public Collection<Sprint> getSprintList() {
+		return sprintList;
+	}
+
+
+	public void setSprintList(Collection<Sprint> sprintList) {
+		this.sprintList = sprintList;
+	}
+	
 	
 }
