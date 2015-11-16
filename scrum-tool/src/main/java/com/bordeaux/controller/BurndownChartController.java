@@ -28,15 +28,17 @@ public class BurndownChartController {
 	private ProjectService projectService;
 	
 	@RequestMapping("/burndownChart")
-	public String burndownChart(Model model, int sprint_id){
-		System.out.println(sprint_id);
-		Sprint s = sprintService.findById(sprint_id);
-		model.addAttribute("sprint", s);
-		BurndownChart b = new BurndownChart(s);
-		System.out.println("Debut : " + s.getBeginning().toString() + "\nFin : " + s.getEnd().toString());
-		model.addAttribute("expectedCosts", b.getExpectedCostsFor(s.getBeginning(), s.getEnd(), 1));
-		model.addAttribute("effectiveCosts", b.getEffectiveCostsFor(s.getBeginning(), s.getEnd(), 1));
-		model.addAttribute("dates", b.getDateStr(s.getBeginning(), s.getEnd(), 1));
+	public String burndownChart(Model model, Integer sprint_id){
+		if(sprint_id != null){
+		
+			Sprint s = sprintService.findById(sprint_id);
+			model.addAttribute("sprint", s);
+			BurndownChart b = new BurndownChart(s);
+			
+			model.addAttribute("expectedCosts", b.getExpectedCostsFor(s.getBeginning(), s.getEnd(), 1));
+			model.addAttribute("effectiveCosts", b.getEffectiveCostsFor(s.getBeginning(), s.getEnd(), 1));
+			model.addAttribute("dates", b.getDateStr(s.getBeginning(), s.getEnd(), 1));
+		}
 		//List<Task> tasks = (List<Task>) s.getTasks();
 		return "burndownChart";
 		
