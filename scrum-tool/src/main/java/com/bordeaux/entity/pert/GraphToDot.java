@@ -4,11 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-class GraphToDot {
+public class GraphToDot {
 
 	private StringBuilder dot;
-	private Map<String, String> nodeMap = new HashMap<String, String>();
-	private Map<String, String> relationMap = new HashMap<String, String>();
+	private Map<String, String> nodeMap = new HashMap<>();
+	private Map<String, String> relationMap = new HashMap<>();
 
 	public GraphToDot() {
 		dot = new StringBuilder();
@@ -39,9 +39,15 @@ class GraphToDot {
 	}
 
 	private void addNode(String name, Node node) {
-		nodeMap.put(name, name + "[label=<<TABLE BORDER=\"0\"><TR><TD colspan=\"2\">" + node.getNum()
-				+ "</TD></TR><TR><TD>" + node.getTot() + "</TD><TD>" + node.getTard()
-				+ "</TD></TR></TABLE>>, shape=\"egg\",style=\"filled\", color=\"black\", fillcolor=\"#efc94c\"];\n");
+		nodeMap.put(name,
+				name + "[label= \"" 
+						+ node.getNum() 
+						+ " [" 
+						+ String.format("%.1f", node.getTot()) 
+						+ ", "
+						+ String.format("%.1f", node.getTard())
+						+ "]"+
+						"\", shape=\"egg\",style=\"filled\", color=\"black\", fillcolor=\"#efc94c\"];\n");
 	}
 
 	public String getDot() {
