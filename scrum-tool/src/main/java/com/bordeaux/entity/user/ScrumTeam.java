@@ -10,4 +10,5 @@ public class ScrumTeam extends User{
 	public ScrumTeam() {
 		this.setRole(RoleType.TEAM.getRole());
 	}
+	
 }

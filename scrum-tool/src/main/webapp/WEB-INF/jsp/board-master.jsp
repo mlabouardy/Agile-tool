@@ -25,4 +25,13 @@
 		</div>
 	</div>
 	</div>
+	
+	<div class="col-md-12">
+		<div class="panel panel-primary">
+			<div class="panel-heading">Scrum Team</div>
+			<div class="panel-body">
+	  			<jsp:include page="scrumteam.jsp"></jsp:include>		
+			</div>
+		</div>
+	</div>
 </div>

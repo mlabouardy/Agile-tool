@@ -1,16 +1,11 @@
 package com.bordeaux.service;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
 
-import org.hibernate.type.CalendarDateType;import org.hibernate.type.descriptor.java.CalendarTimeTypeDescriptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -34,9 +29,6 @@ public class InitService {
 
 	@Autowired
 	private UserService userService;
-	
-	@Autowired
-	private ProjectService projectService;
 	
 	@Autowired
 	private SprintService sprintService;
@@ -89,19 +81,38 @@ public class InitService {
 		master3.setPassword(encoder.encode("master"));
 		
 		
-		ScrumTeam team = new ScrumTeam();
-		team.setEmail("team@labouardy.com");
-		team.setFirstname("Scrum");
-		team.setLastname("Team");
-		team.setPassword(encoder.encode("teamaz"));
+		ScrumTeam team1 = new ScrumTeam();
+		team1.setEmail("team1@labouardy.com");
+		team1.setFirstname("Scrum1");
+		team1.setLastname("Team1");
+		team1.setPassword(encoder.encode("teamaz"));
+		
+		ScrumTeam team2 = new ScrumTeam();
+		team2.setEmail("team2@labouardy.com");
+		team2.setFirstname("Scrum2");
+		team2.setLastname("Team2");
+		team2.setPassword(encoder.encode("teamaz"));
+		
+		ScrumTeam team3 = new ScrumTeam();
+		team3.setEmail("team3@labouardy.com");
+		team3.setFirstname("Scrum3");
+		team3.setLastname("Team3");
+		team3.setPassword(encoder.encode("teamaz"));
+		
+		userService.save(team1);
+		userService.save(team2);
+		userService.save(team3);
+		
+		master1.getScrumTeamList().add(team1);
+		master1.getScrumTeamList().add(team2);
 		
 		userService.save(product);
 		userService.save(product2);
 		userService.save(master1);
 		userService.save(master2);
 		userService.save(master3);
-		userService.save(team);
-		
+
+				
 		/*Project project = new Project();*/
 		Calendar cal = Calendar.getInstance();
 		Date date_tmp = new Date();

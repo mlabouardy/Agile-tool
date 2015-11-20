@@ -1,10 +1,12 @@
 package com.bordeaux.entity.user;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 
 import com.bordeaux.entity.Role.RoleType;
@@ -16,8 +18,13 @@ public class ScrumMaster extends User {
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Collection<UserStory> userStories;
 	
+	@JoinTable(name="team")
+	@OneToMany(targetEntity=ScrumTeam.class, fetch = FetchType.EAGER)
+	private Collection<ScrumTeam> scrumTeamList;
+	
 	public ScrumMaster() {
 		this.setRole(RoleType.MASTER.getRole());
+		this.scrumTeamList = new ArrayList<ScrumTeam>();
 	}
 	
 	public Collection<UserStory> getUserStories() {
@@ -26,5 +33,13 @@ public class ScrumMaster extends User {
 	
 	public void setUserStories(Collection<UserStory> userStories) {
 		this.userStories = userStories;
+	}
+	
+	public Collection<ScrumTeam> getScrumTeamList() {
+		return scrumTeamList;
+	}
+	
+	public void setScrumTeamList(Collection<ScrumTeam> scrumTeamList) {
+		this.scrumTeamList = scrumTeamList;
 	}
 }

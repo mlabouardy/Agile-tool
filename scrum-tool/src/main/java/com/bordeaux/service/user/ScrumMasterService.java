@@ -90,4 +90,8 @@ public class ScrumMasterService {
 		return null;
 	}
 
+	public void saveTeam(ScrumMaster scrumMaster) {
+		scrumMasterRepository.saveAndFlush(scrumMaster);
+	}
+	
 }

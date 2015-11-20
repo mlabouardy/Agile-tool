@@ -19,6 +19,7 @@ import com.bordeaux.entity.user.ScrumTeam;
 import com.bordeaux.entity.user.User;
 import com.bordeaux.form.backlog.BackLogForm;
 import com.bordeaux.form.backlog.UserStoryForm;
+import com.bordeaux.form.team.ScrumTeamForm;
 import com.bordeaux.service.BackLogService;
 import com.bordeaux.service.UserStoryService;
 import com.bordeaux.service.user.ProductOwnerService;
@@ -50,7 +51,7 @@ public class DashboardController {
 
 	@Autowired
 	private UserStoryService userStoryService;
-
+	
 	@RequestMapping("/board")
 	public String dashboard(Model model, Principal principal) {
 		String email = principal.getName();
@@ -67,7 +68,11 @@ public class DashboardController {
 
 		else if (user.getRole().getName().equals(RoleType.MASTER.toString())) {
 			ScrumMaster scrumMaster = scrumMasterService.findUserByEmail(email);
+			Collection<ScrumTeam> devListWithoutTeam = scrumTeamService.findDevWithoutTeam();
 			model.addAttribute("scrumMaster", scrumMaster);
+			model.addAttribute("devListWithoutTeam", devListWithoutTeam);
+			model.addAttribute("scrumTeamForm", new ScrumTeamForm());
+
 		}
 
 		else if (user.getRole().getName().equals(RoleType.TEAM.toString())) {
@@ -121,6 +126,10 @@ public class DashboardController {
 		userStoryService.saveTaskInUserStory(userStoryID, task);
 		ScrumMaster scrumMaster = scrumMasterService.findUserById(scrumMasterID);
 		model.addAttribute("scrumMaster", scrumMaster);
+		Collection<ScrumTeam> devListWithoutTeam = scrumTeamService.findDevWithoutTeam();
+		model.addAttribute("scrumMaster", scrumMaster);
+		model.addAttribute("devListWithoutTeam", devListWithoutTeam);
+		model.addAttribute("scrumTeamForm", new ScrumTeamForm());
 		return "board";
 	}
 
