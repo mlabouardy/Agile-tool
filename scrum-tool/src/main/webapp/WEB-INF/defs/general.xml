@@ -82,11 +82,15 @@
     </definition>
     
 	<definition name="github" extends="common">
-         <put-attribute name="title" value="Dashboard - Scrum Master" />
+         <put-attribute name="title" value="Github Manager" />
     	 <put-attribute name="body" value="/WEB-INF/jsp/github.jsp" />
     	 <put-attribute name="current" value="index"></put-attribute>
     </definition>
     
-    
+    <definition name="commits" extends="common">
+         <put-attribute name="title" value="List of commits" />
+    	 <put-attribute name="body" value="/WEB-INF/jsp/commits.jsp" />
+    	 <put-attribute name="current" value="index"></put-attribute>
+    </definition>
     
 </tiles-definitions>
