@@ -13,13 +13,15 @@
 					<tr>
 						<th>Id</th>
 						<th>Description</th>
+						<th>Commits</th>
 					</tr>
 				</thead>
 		
 				<c:forEach var="task" items="${tasks}">
 					<tr>
 						<td>${task.getId()}</td>
-						<td>${task.getDescription()}</td>						
+						<td>${task.getDescription()}</td>	
+						<td><a class="btn btn-success" href="/board/project/id/task/${task.getId()}/commits.html">View</a></td>					
 					</tr>
 				</c:forEach>
 			</table>	
