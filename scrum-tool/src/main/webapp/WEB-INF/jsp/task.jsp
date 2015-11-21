@@ -28,7 +28,7 @@
 								<a class="btn btn-success" href="/addtask/${scrumMaster.getId()}/${userStory.getId()}.html">Add task</a>
 							</td>
 							<td>
-								<a class="btn btn-success" href="/listtask/${scrumMaster.getId()}/${userStory.getId()}.html">List task</a>
+								<a class="btn btn-success" href="/board/project/${scrumMaster.getProject().getId()}/listtask/${scrumMaster.getId()}/${userStory.getId()}.html">List task</a>
 							</td>
 						</tr>
 

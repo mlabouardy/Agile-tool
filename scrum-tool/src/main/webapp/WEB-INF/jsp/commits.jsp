@@ -1,5 +1,5 @@
 <div class="container-fluid padding-container" ng-controller="commitCtrl"
-	ng-init="init('mlabouardy/Commit-Monitor','mlabouardy','blabla','T1')">
+	ng-init="init('${github.getRepository()}','${github.getUsername()}','${github.getPassword()}','${tag}')">
 	<div class="row">
 		<div class="col-md-12">
 			<div class="panel panel-success">

@@ -36,8 +36,8 @@ public class DashboardController {
 	private UserService userService;
 
 	// j'ai fait un autre service car le jpa ne veut pas foctionner avec la
-	// généricité
-	// donc pour chaque type d'utilisateur il faut créer un service et un
+	// gï¿½nï¿½ricitï¿½
+	// donc pour chaque type d'utilisateur il faut crï¿½er un service et un
 	// repository
 	@Autowired
 	private ProductOwnerService productOwnerService;
@@ -143,10 +143,11 @@ public class DashboardController {
 			return "board";
 	}
 
-	@RequestMapping(value = "/listtask/{scrumMasterID}/{userStoryID}", method = RequestMethod.GET)
-	public String ListTask(Model model, @PathVariable("scrumMasterID") int scrumMasterID, @PathVariable("userStoryID") int userStoryID) {
+	@RequestMapping(value = "/board/project/{id_project}/listtask/{scrumMasterID}/{userStoryID}", method = RequestMethod.GET)
+	public String ListTask(Model model,@PathVariable("id_project") int id_project, @PathVariable("scrumMasterID") int scrumMasterID, @PathVariable("userStoryID") int userStoryID) {
 		Collection<Task> tasks = userStoryService.getUserStory(userStoryID).getTasks();
 		model.addAttribute("tasks", tasks);
+		model.addAttribute("id_project", id_project);
 		return "listtask";
 	}
 }
