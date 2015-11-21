@@ -8,8 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.bordeaux.entity.Role.RoleType;
+import com.bordeaux.entity.Project;
 import com.bordeaux.entity.UserStory;
 
 @Entity
@@ -22,6 +24,17 @@ public class ScrumMaster extends User {
 	@OneToMany(targetEntity=ScrumTeam.class, fetch = FetchType.EAGER)
 	private Collection<ScrumTeam> scrumTeamList;
 	
+	@OneToOne
+	private Project project;
+	
+	public Project getProject() {
+		return project;
+	}
+
+	public void setProject(Project project) {
+		this.project = project;
+	}
+
 	public ScrumMaster() {
 		this.setRole(RoleType.MASTER.getRole());
 		this.scrumTeamList = new ArrayList<ScrumTeam>();
