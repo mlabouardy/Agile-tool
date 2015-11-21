@@ -2,7 +2,6 @@ package com.bordeaux.controller;
 
 import java.security.Principal;
 import java.util.Collection;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +19,6 @@ import com.bordeaux.entity.user.ScrumTeam;
 import com.bordeaux.entity.user.User;
 import com.bordeaux.form.backlog.BackLogForm;
 import com.bordeaux.form.backlog.UserStoryForm;
-import com.bordeaux.form.task.TaskForm;
 import com.bordeaux.form.team.ScrumTeamForm;
 import com.bordeaux.service.BackLogService;
 import com.bordeaux.service.UserStoryService;
@@ -80,7 +78,6 @@ public class DashboardController {
 		else if (user.getRole().getName().equals(RoleType.TEAM.toString())) {
 			ScrumTeam scrumTeam = scrumTeamService.findUserByEmail(email);
 			// ....
-				model.addAttribute("scrumTeam",scrumTeam);
 		}
 
 		return "board";
@@ -114,33 +111,26 @@ public class DashboardController {
 		return "board";
 	}
 
-	@ModelAttribute("taskForm")
-	public TaskForm constructTaskForm() {
-		return new TaskForm();
+	@ModelAttribute("task")
+	public Task constructTask() {
+		return new Task();
 	}
 
 	@RequestMapping(value = "/addtask/{scrumMasterID}/{userStoryID}")
-	public String addTask(@PathVariable("userStoryID") int id,Model model) {
-		List<ScrumTeam> scrumTeams = scrumTeamService.getScrumTeamList();
-		model.addAttribute("scrumTeams",scrumTeams);
+	public String addTask(@PathVariable("userStoryID") int id) {
 		return "addtask";
 	}
 
 	@RequestMapping(value = "/addtask/{scrumMasterID}/{userStoryID}", method = RequestMethod.POST)
-	public String addTask(@ModelAttribute("taskForm") TaskForm taskForm, @PathVariable("scrumMasterID") int scrumMasterID, @PathVariable("userStoryID") int userStoryID, Model model) {
-		try {
-			userStoryService.saveTaskInUserStory(userStoryID, taskForm);
-		} catch (Exception e) {
-			taskForm.setException(e.getMessage());
-		}
-		
+	public String addTask(@ModelAttribute("task") Task task, @PathVariable("scrumMasterID") int scrumMasterID, @PathVariable("userStoryID") int userStoryID, Model model) {
+		userStoryService.saveTaskInUserStory(userStoryID, task);
 		ScrumMaster scrumMaster = scrumMasterService.findUserById(scrumMasterID);
 		model.addAttribute("scrumMaster", scrumMaster);
 		Collection<ScrumTeam> devListWithoutTeam = scrumTeamService.findDevWithoutTeam();
 		model.addAttribute("scrumMaster", scrumMaster);
 		model.addAttribute("devListWithoutTeam", devListWithoutTeam);
 		model.addAttribute("scrumTeamForm", new ScrumTeamForm());
-			return "board";
+		return "board";
 	}
 
 	@RequestMapping(value = "/listtask/{scrumMasterID}/{userStoryID}", method = RequestMethod.GET)

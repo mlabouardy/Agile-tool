@@ -37,14 +37,6 @@ public class User {
 	
 	@ManyToOne(cascade = {CascadeType.MERGE})
 	private Role role;
-	
-	public User(){
-		
-	}
-
-	public User(int id){
-		this.id=id;
-	}
 
 	public int getId() {
 		return id;

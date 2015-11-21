@@ -3,7 +3,6 @@ package com.bordeaux.service.user;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.transaction.Transactional;
@@ -56,13 +55,4 @@ public class ScrumTeamService {
 	public ScrumTeam findByID(int id){
 		return scrumTeamRepository.findOne(id);	
 	}
-
-	/*****************/
-	public List<ScrumTeam> getScrumTeamList() {
-
-		List<ScrumTeam> scrumTeamList = scrumTeamRepository.findAll();
-		return scrumTeamList;
-	}
-	
-	/*****************/
 }
