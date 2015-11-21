@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <div class="container padding-container">
 	<div class="col-md-12">
@@ -14,16 +15,21 @@
 	</div>
 	</div>
 	<div class="col-md-12">
-	<div class="panel panel-primary">
-		<div class="panel-heading">Github Manager <a class="btn btn-success pull-right btn-xs" href="/board/1/github/create.html">Create</a></div>
-		<div class="panel-body">
-  					mlabouardy/Commit-Monitor
-  					<div class="button-group pull-right">
-  						<a class="btn btn-primary">Edit</a>
-  						<a class="btn btn-danger">Delete</a>
-  					</div>
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				Github Manager <a class="btn btn-success pull-right btn-xs"
+					href="/board/${scrumMaster.getProject().getId()}/github/create.html">Create</a>
+			</div>
+			<div class="panel-body">
+
+				<c:if test="${scrumMaster.getProject().getGithub()!=null}">
+		  					${scrumMaster.getProject().getGithub().getRepository()}
+		  					<div class="button-group pull-right">
+						<a class="btn btn-primary">Edit</a>
+					</div>
+				</c:if>
+			</div>
 		</div>
-	</div>
 	</div>
 	
 	<div class="col-md-12">

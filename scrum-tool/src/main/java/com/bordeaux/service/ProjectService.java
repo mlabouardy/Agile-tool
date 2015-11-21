@@ -18,4 +18,8 @@ public class ProjectService {
 	public void save(Project project){
 		projectRepository.saveAndFlush(project);
 	}
+
+	public Project findById(int id_project) {
+		return projectRepository.findOne(id_project);
+	}
 }
