@@ -32,8 +32,7 @@
 						</tr>
 					</thead>
 
-					<c:forEach var="userStoryForm"
-						items="${backLogForm.getUserStoryFormList()}">
+					<c:forEach var="userStoryForm" items="${backLogForm.getUserStoryFormList()}">
 
 						<tr>
 

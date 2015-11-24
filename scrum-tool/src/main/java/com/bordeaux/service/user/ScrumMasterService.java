@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bordeaux.entity.Project;
 import com.bordeaux.entity.UserStory;
 import com.bordeaux.entity.user.ScrumMaster;
 import com.bordeaux.repository.user.ScrumMasterRepository;
@@ -38,7 +39,7 @@ public class ScrumMasterService {
 		return scrumMasterList;
 	}
 
-	public ScrumMaster addUserStoryToScrumMaster(int scrumMasterId, UserStory userStory) {
+	public ScrumMaster addUserStoryToScrumMaster(int scrumMasterId, UserStory userStory, Project project) {
 
 		ScrumMaster scrumMaster = scrumMasterRepository.findOneById(scrumMasterId);
 
@@ -50,6 +51,7 @@ public class ScrumMasterService {
 		removeUserStoryFromScrumMaster(userStory.getId());
 		
 		scrumMaster.getUserStories().add(userStory);
+		scrumMaster.setProject(project);
 		scrumMasterRepository.saveAndFlush(scrumMaster);
 
 		return scrumMaster;
@@ -90,4 +92,8 @@ public class ScrumMasterService {
 		return null;
 	}
 
+	public void saveTeam(ScrumMaster scrumMaster) {
+		scrumMasterRepository.saveAndFlush(scrumMaster);
+	}
+	
 }

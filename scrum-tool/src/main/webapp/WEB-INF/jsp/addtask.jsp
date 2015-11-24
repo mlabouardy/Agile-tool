@@ -5,7 +5,8 @@
 
 <div class="container padding-container">
  
-	<f:form commandName="task" >
+ <c:if test="${empty taskForm.exception}">
+	<f:form commandName="taskForm" >
 
 			<div class="container">
 				<div class="form-group">
@@ -24,9 +25,25 @@
 				</div>
 				
 				<div class="form-group">
+					<label for="radiobutton_input">Scrum Team</label>
+						<c:forEach var="scrumTeam" items="${scrumTeams}">
+							<div class="radiobutton">
+								<f:radiobutton id="radiobutton" class="radiobutton" path="scrumTeamId" value="${scrumTeam.getId()}"/> ${scrumTeam.getFirstname()} ${scrumTeam.getLastname()}
+							</div>
+						</c:forEach>
+				</div>
+			
+				<div class="form-group">
 					<input class="btn btn-success btn-block" type="submit" value="submit">
 				</div>			
 			</div>	
 
-	</f:form>			
+	</f:form>	
+	</c:if>	
+	<c:if test="${not empty taskForm.exception}">
+	
+		<div>
+			${taskForm.exception}
+		</div>
+	</c:if>		
 </div>

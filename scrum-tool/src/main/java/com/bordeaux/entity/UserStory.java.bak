@@ -31,10 +31,11 @@ public class UserStory {
 	public UserStory() {
 		
 	}
-	
+	/******************/
 	public UserStory(int id) {
 		this.id = id;
 	}
+	/**************/
 	
 	public Collection<Task> getTasks() {
 		return tasks;

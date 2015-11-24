@@ -19,18 +19,6 @@ public class TaskForm {
 	private String color;
 	private String exception;
 	private String userStoryId;
-	/************************/
-	@NotEmpty(message = "The tag field can not be empty")
-	private int scrumTeamId;
-	
-	public int getScrumTeamId() {
-		return scrumTeamId;
-	}
-	
-	public void setScrumTeamId(int scrumTeamId) {
-		this.scrumTeamId = scrumTeamId;
-	}
-	/****************/
 	
 	public String getuserStoryId() {
 		return userStoryId;

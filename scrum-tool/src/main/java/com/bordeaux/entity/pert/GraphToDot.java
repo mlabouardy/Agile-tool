@@ -7,8 +7,8 @@ import java.util.Map.Entry;
 public class GraphToDot {
 
 	private StringBuilder dot;
-	private Map<String, String> nodeMap = new HashMap<>();
-	private Map<String, String> relationMap = new HashMap<>();
+	private Map<String, String> nodeMap = new HashMap<String, String>();
+	private Map<String, String> relationMap = new HashMap<String, String>();
 
 	public GraphToDot() {
 		dot = new StringBuilder();
