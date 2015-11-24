@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.beans.factory.annotation.Required;
 
 import com.bordeaux.entity.user.User;
@@ -26,6 +27,7 @@ public class Sprint {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "sprint")
 	private Collection<Task> tasks = new ArrayList<Task>();
 	
@@ -36,6 +38,7 @@ public class Sprint {
 	@Column(nullable=false)
 	private int duration; // using day as unit
 	
+	@JsonIgnore
 	@ManyToOne(targetEntity=User.class)
 	private User owner;
 	

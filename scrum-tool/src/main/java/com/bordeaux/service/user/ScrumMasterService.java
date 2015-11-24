@@ -1,5 +1,6 @@
 package com.bordeaux.service.user;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,6 +27,10 @@ public class ScrumMasterService {
 
 	public ScrumMaster findUserById(int id) {
 		return scrumMasterRepository.findOneById(id);
+	}
+	
+	public Collection<ScrumMaster> findAll(){
+		return scrumMasterRepository.findAll();
 	}
 	
 	public Map<Integer, String> getScrumMasterList() {

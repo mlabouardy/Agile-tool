@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.bordeaux.entity.Sprint;
 import com.bordeaux.entity.Task;
+import com.bordeaux.entity.user.User;
 import com.bordeaux.repository.SprintRepository;
 
 @Service
@@ -22,10 +23,13 @@ public class SprintService {
 		sprintRepository.save(s);
 	}
 	
-	public Sprint findById(int id){
-		return sprintRepository.findOne(id);
+	public Sprint findSprintById(int id){
+		return sprintRepository.findSprintById(id);
 	}
 
+	public Collection<Sprint> findSprintOfUser(User u){
+		return  sprintRepository.findSprintsByOwner(u);
+	}
 	
 	public Collection<Sprint> getAll(){
 		

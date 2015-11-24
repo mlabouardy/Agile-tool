@@ -12,6 +12,8 @@ import javax.persistence.OneToOne;
 
 import com.bordeaux.entity.user.ScrumTeam;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import com.bordeaux.entity.user.User;
 
 @Entity
@@ -37,18 +39,22 @@ public class Task {
 	
 	private Date effectiveEnd;
 	
+	@JsonIgnore
 	@ManyToOne
 	private StatusTask status;
 	
+	@JsonIgnore
 	@ManyToOne
 	private User associatedDev;
 	
+	@JsonIgnore
 	@ManyToOne
 	private UserStory associatedUs;
 	
 	@ManyToOne
 	@JoinColumn(name = "sprint_id")
 	private Sprint sprint;
+
 
 	@OneToOne
 	private ScrumTeam scrumTeam;
@@ -150,6 +156,46 @@ public class Task {
 	}
 	public void setSprint(Sprint sprint) {
 		this.sprint = sprint;
+	}
+	
+	public String toString(){
+		String res = "";
+		res += this.Description + "\n";
+		res += "Difficulty : " + this.difficulty + "\n";
+		res += "Beginning : " + this.getBeginning().toString() + "\n";
+		res += "ExpectedEnd : " + this.getExpectedEnd().toString() + "\n";
+		res += "EffectiveEnd : " + this.getEffectiveEnd().toString() + "\n";
+		return res;
+		
+	}
+	
+	public Object clone(){
+		Task t = new Task();
+		t.associatedDev = this.associatedDev;
+		t.associatedUs = this.associatedUs;
+		
+		if(this.beginning != null)
+			t.beginning = (Date) this.beginning.clone();
+		else
+			t.beginning = null;
+		
+		if(this.effectiveEnd != null)
+			t.effectiveEnd = (Date) this.effectiveEnd.clone();
+		else
+			t.effectiveEnd = null;
+		
+		if(this.expectedEnd != null)
+			t.expectedEnd = (Date) this.expectedEnd.clone();
+		else
+			t.expectedEnd = null;
+		
+		t.difficulty = this.difficulty;
+		t.Description = this.Description;
+		t.done = this.done;
+		t.priority = this.priority;
+		t.sprint = this.sprint;
+		
+		return t;
 	}
 	
 }

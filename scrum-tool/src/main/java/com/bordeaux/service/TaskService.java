@@ -25,5 +25,9 @@ public class TaskService {
 		return taskRepository.findBySprint(s);
 	}
 	
+	public Task findTaskById(int id){
+		return taskRepository.findById(id);
+	}
+	
 
 }

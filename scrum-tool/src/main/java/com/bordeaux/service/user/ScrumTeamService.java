@@ -1,5 +1,7 @@
 package com.bordeaux.service.user;
 
+import java.util.Collection;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -28,6 +30,10 @@ public class ScrumTeamService {
 	
 	public ScrumTeam findUserByEmail(String email) {
 		return scrumTeamRepository.findByEmail(email);
+	}
+	
+	public Collection<ScrumTeam> findAll(){
+		return scrumTeamRepository.findAll();
 	}
 	
 	public Collection<ScrumTeam> findDevWithoutTeam(){

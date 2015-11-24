@@ -81,16 +81,33 @@
     	 <put-attribute name="current" value="index"></put-attribute>
     </definition>
     
+     <definition name="kanban" extends="common">
+         <put-attribute name="title" value="Kanban" />
+         <put-attribute name="header" value="/WEB-INF/layouts/header.jsp"/>
+    	 <put-attribute name="body" value="/WEB-INF/jsp/kanban.jsp" />
+    	 <put-attribute name="current" value="index"></put-attribute>
+    </definition>
+    
+    <definition name="managementSprint" extends="common">
+         <put-attribute name="title" value="Management Sprint" />
+         <put-attribute name="header" value="/WEB-INF/layouts/header.jsp"/>
+    	 <put-attribute name="body" value="/WEB-INF/jsp/managementSprint.jsp" />
+    	 <put-attribute name="current" value="index"></put-attribute>
+    </definition>
+    
+    <definition name="managementTeam" extends="common">
+         <put-attribute name="title" value="Management Sprint" />
+         <put-attribute name="header" value="/WEB-INF/layouts/header.jsp"/>
+    	 <put-attribute name="body" value="/WEB-INF/jsp/managementTeam.jsp" />
+    	 <put-attribute name="current" value="index"></put-attribute>
+    </definition>
+    
 	<definition name="github" extends="common">
-         <put-attribute name="title" value="Github Manager" />
+         <put-attribute name="title" value="Dashboard - Scrum Master" />
     	 <put-attribute name="body" value="/WEB-INF/jsp/github.jsp" />
     	 <put-attribute name="current" value="index"></put-attribute>
     </definition>
     
-    <definition name="commits" extends="common">
-         <put-attribute name="title" value="List of commits" />
-    	 <put-attribute name="body" value="/WEB-INF/jsp/commits.jsp" />
-    	 <put-attribute name="current" value="index"></put-attribute>
-    </definition>
+    
     
 </tiles-definitions>

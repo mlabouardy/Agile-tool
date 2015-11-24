@@ -9,4 +9,6 @@ import com.bordeaux.entity.Task;
 @Repository
 public interface TaskRepository extends JpaRepository<Task, Integer> {
 	public Task findBySprint(Sprint s);
+	
+	public Task findById(int id);
 }

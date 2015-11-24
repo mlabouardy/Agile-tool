@@ -32,7 +32,7 @@ public class BurndownChartController {
 	public String burndownChart(Model model, Integer sprint_id){
 		if(sprint_id != null){
 		
-			Sprint s = sprintService.findById(sprint_id);
+			Sprint s = sprintService.findSprintById(sprint_id);
 			model.addAttribute("sprint", s);
 			BurndownChart b = new BurndownChart(s);
 			

@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import com.bordeaux.entity.user.User;
 
 @Entity
@@ -31,7 +33,7 @@ public class Role {
 			return text;
 		}
 		
-		// pour avoir la meme référence qui va etre utilisé par tous les users 
+		// pour avoir la meme rï¿½fï¿½rence qui va etre utilisï¿½ par tous les users 
 		public Role getRole(){
 			if (this.text.equals(RoleType.PRODUCT.text)){
 				if (productOwner == null) productOwner = new Role(RoleType.PRODUCT);
@@ -54,6 +56,7 @@ public class Role {
 	
 	private String name;
 	
+	@JsonIgnore
 	@OneToMany(targetEntity=User.class,mappedBy="role")
 	private List<User> users;
 	

@@ -2,10 +2,13 @@ package com.bordeaux.service;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
 
+import org.hibernate.type.CalendarDateType;import org.hibernate.type.descriptor.java.CalendarTimeTypeDescriptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -15,6 +18,7 @@ import com.bordeaux.entity.Role.RoleType;
 import com.bordeaux.entity.Sprint;
 import com.bordeaux.entity.StatusTask;
 import com.bordeaux.entity.Task;
+import com.bordeaux.entity.TaskDependencies;
 import com.bordeaux.entity.user.ProductOwner;
 import com.bordeaux.entity.user.ScrumMaster;
 import com.bordeaux.entity.user.ScrumTeam;
@@ -31,6 +35,9 @@ public class InitService {
 	private UserService userService;
 	
 	@Autowired
+	private ProjectService projectService;
+	
+	@Autowired
 	private SprintService sprintService;
 	
 	@Autowired
@@ -39,12 +46,18 @@ public class InitService {
 	@Autowired
 	private StatusTaskService statusTaskService;
 	
+	@Autowired
+	private TaskdependencyService tds;
+	
 	@PostConstruct
 	public void init() {
 
 		roleService.save(RoleType.PRODUCT.getRole());
 		roleService.save(RoleType.MASTER.getRole());
 		roleService.save(RoleType.TEAM.getRole());
+		
+		Project p = new Project();
+		p.setName("Projet de Test");
 
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		
@@ -53,7 +66,7 @@ public class InitService {
 		product.setFirstname("Product");
 		product.setLastname("Owner");
 		product.setPassword(encoder.encode("product"));
-		product.setProject(new Project());
+		product.setProject(p);
 
 		ProductOwner product2 = new ProductOwner();
 		product2.setEmail("product2@labouardy.com");
@@ -67,12 +80,14 @@ public class InitService {
 		master1.setFirstname("Scrum1");
 		master1.setLastname("Master1");
 		master1.setPassword(encoder.encode("master"));
+		master1.setProject(p);
 
 		ScrumMaster master2 = new ScrumMaster();
 		master2.setEmail("master2@labouardy.com");
 		master2.setFirstname("Scrum2");
 		master2.setLastname("Master2");
 		master2.setPassword(encoder.encode("master"));
+		master2.setProject(p);
 		
 		ScrumMaster master3 = new ScrumMaster();
 		master3.setEmail("master3@labouardy.com");
@@ -111,14 +126,13 @@ public class InitService {
 		userService.save(master1);
 		userService.save(master2);
 		userService.save(master3);
-
-				
-		/*Project project = new Project();*/
+		
+		Project project = projectService.findById(1);
 		Calendar cal = Calendar.getInstance();
 		Date date_tmp = new Date();
 		cal.setTime(date_tmp);
 		Sprint sprint = new Sprint();
-		sprint.setOwner(product);
+		sprint.setOwner(master1);
 		sprint.setBeginning(new Date());
 		sprint.setDuration(7);
 		cal.add(Calendar.DAY_OF_MONTH, sprint.getDuration());
@@ -128,7 +142,7 @@ public class InitService {
 		cal.setTime(date_tmp);
 		//DateFormat formatDate = new SimpleDateFormat("EEEE, d MMM yyyy");
 		
-		
+	
 		
 		statusTask.setName("TO DO");
 		task.setDescription("Tache de test");
@@ -196,7 +210,12 @@ public class InitService {
 		sprint.getTasks().add(task4);
 		task4.setSprint(sprint);
 		
-		/*project.getSprintList().add(sprint);*/
+		project.getSprintList().add(sprint);
+		
+		TaskDependencies td = new TaskDependencies();
+		td.setParent(task);
+		td.getDependencies().add(task2);
+		td.getDependencies().add(task3);
 
 		statusTaskService.save(statusTask);
 		sprintService.save(sprint);
@@ -204,10 +223,9 @@ public class InitService {
 		taskService.save(task2);
 		taskService.save(task3);
 		taskService.save(task4);
+		projectService.save(project);
+		tds.save(td);
 
-
-		
-		/*projectService.save(project);*/
 		
 	
 		

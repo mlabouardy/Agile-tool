@@ -10,12 +10,18 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.bordeaux.entity.user.ScrumMaster;
+import com.bordeaux.entity.user.ScrumTeam;
+import com.bordeaux.entity.user.User;
+
 @Entity
 public class Project {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	
+	private String name;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private BackLog backLog;
@@ -26,6 +32,11 @@ public class Project {
 	@OneToMany
 	private Collection<Sprint> sprintList;
 
+	@OneToMany
+	private Collection<ScrumMaster> managers;
+	
+	@OneToMany
+	private Collection<ScrumTeam> devs;
 	
 	public Project() {
 		backLog = new BackLog();
@@ -66,6 +77,37 @@ public class Project {
 	public void setSprintList(Collection<Sprint> sprintList) {
 		this.sprintList = sprintList;
 	}
+
+
+	public Collection<ScrumMaster> getManagers() {
+		return managers;
+	}
+
+
+	public void setManagers(Collection<ScrumMaster> managers) {
+		this.managers = managers;
+	}
+
+
+	public Collection<ScrumTeam> getDevs() {
+		return devs;
+	}
+
+
+	public void setDevs(Collection<ScrumTeam> devs) {
+		this.devs = devs;
+	}
+
+
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	
 	
 }

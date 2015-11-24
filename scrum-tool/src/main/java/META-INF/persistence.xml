@@ -14,6 +14,7 @@
 		<class>com.bordeaux.entity.Sprint</class>
 		<class>com.bordeaux.entity.StatusTask</class>
 		<class>com.bordeaux.entity.Github</class>
+		<class>com.bordeaux.entity.TaskDependencies</class>
 	</persistence-unit>
 </persistence>
  

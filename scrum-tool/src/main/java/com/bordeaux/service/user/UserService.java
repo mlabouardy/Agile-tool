@@ -1,5 +1,7 @@
 package com.bordeaux.service.user;
 
+import java.util.Collection;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,5 +23,13 @@ public class UserService {
 	
 	public User findUserByEmail(String email) {
 		return userRepository.findByEmail(email);
+	}
+	
+	public User findUserById(int id){
+		return userRepository.findById(id);
+	}
+	
+	public Collection<User> findEveryUsers(){
+		return userRepository.findAll();
 	}
 }
