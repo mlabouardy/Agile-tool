@@ -36,7 +36,7 @@ public class DashboardController {
 	private UserService userService;
 
 	// j'ai fait un autre service car le jpa ne veut pas foctionner avec la
-	// gï¿½nï¿½ricitï¿½
+	// généricité
 	// donc pour chaque type d'utilisateur il faut crï¿½er un service et un
 	// repository
 	@Autowired
@@ -74,13 +74,19 @@ public class DashboardController {
 			model.addAttribute("scrumMaster", scrumMaster);
 			model.addAttribute("devListWithoutTeam", devListWithoutTeam);
 			model.addAttribute("scrumTeamForm", new ScrumTeamForm());
-
 		}
 
 		else if (user.getRole().getName().equals(RoleType.TEAM.toString())) {
 			ScrumTeam scrumTeam = scrumTeamService.findUserByEmail(email);
-			// ....
-				model.addAttribute("scrumTeam",scrumTeam);
+			ScrumMaster scrumMaster = scrumMasterService.getScrumMasterByDevID(scrumTeam.getId());
+			
+			// s'il le dev est déja affecté à un groupe
+			// sinon on affiche pas le pert (le if dans la jsp)
+			if (scrumMaster != null){
+				model.addAttribute("scrumMaster",scrumMaster);
+			}
+			
+			model.addAttribute("scrumTeam",scrumTeam);
 		}
 
 		return "board";
@@ -134,13 +140,7 @@ public class DashboardController {
 			taskForm.setException(e.getMessage());
 		}
 		
-		ScrumMaster scrumMaster = scrumMasterService.findUserById(scrumMasterID);
-		model.addAttribute("scrumMaster", scrumMaster);
-		Collection<ScrumTeam> devListWithoutTeam = scrumTeamService.findDevWithoutTeam();
-		model.addAttribute("scrumMaster", scrumMaster);
-		model.addAttribute("devListWithoutTeam", devListWithoutTeam);
-		model.addAttribute("scrumTeamForm", new ScrumTeamForm());
-			return "board";
+		return "redirect:/board.html";
 	}
 
 	@RequestMapping(value = "/board/project/{id_project}/listtask/{scrumMasterID}/{userStoryID}", method = RequestMethod.GET)

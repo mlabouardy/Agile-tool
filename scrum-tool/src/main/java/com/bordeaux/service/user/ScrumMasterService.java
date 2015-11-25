@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.bordeaux.entity.Project;
 import com.bordeaux.entity.UserStory;
 import com.bordeaux.entity.user.ScrumMaster;
+import com.bordeaux.entity.user.ScrumTeam;
 import com.bordeaux.repository.user.ScrumMasterRepository;
 
 @Service
@@ -61,6 +62,20 @@ public class ScrumMasterService {
 
 		return scrumMaster;
 		
+	}
+	
+	public ScrumMaster getScrumMasterByDevID(int devID) {
+
+		for (ScrumMaster scrumMaster : scrumMasterRepository.findAll()) {
+			for (ScrumTeam scrumTeam : scrumMaster.getScrumTeamList()) {
+				if (scrumTeam.getId() == devID){
+					return scrumMaster;
+				}
+			}
+			
+		}
+
+		return null;
 	}
 	
 	public void removeUserStoryFromScrumMaster(int userStoryID) {

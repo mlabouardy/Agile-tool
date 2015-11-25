@@ -6,7 +6,7 @@ import java.util.List;
 import com.google.gson.Gson;
 
 /*a utilisé uniquement par l'agorithme de pert (inaccessible depuis d'autres packages*/
-class Task {
+public class Task {
 		
 	private String name;
 	private float duration;
