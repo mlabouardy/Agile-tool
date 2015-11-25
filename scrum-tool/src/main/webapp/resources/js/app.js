@@ -1,37 +1,4 @@
-angular.module('scrumApp',[])
-.factory('repoFactory', function ($http) {
-    var baseUrl="https://api.github.com/repos/";
-    // Public API here
-    return {
-      getInfo: function(repo){
-      	return $http.get(baseUrl+repo);
-      },
-      getContributors: function (repo) {
-        return $http.get(baseUrl+repo+'/contributors');
-      },
-      getLanguages:function(repo){
-      	return $http.get(baseUrl+repo+'/languages');
-      },
-      getContents:function(repo){
-      	return $http.get(baseUrl+repo+'/contents');
-      },
-      getCommits:function(repo){
-      	return $http.get(baseUrl+repo+'/commits');
-      }
-    };
-  })
-  .factory('userFactory', function ($http) {
-     var baseUrl="https://api.github.com/users/";
-    
-    return {
-      getFollowers: function(user){
-        return $http.get(baseUrl+user+'/followers');
-      },
-      getFollowing: function (user) {
-        return $http.get(baseUrl+user+'/following');
-      }
-    };
-  })
+angular.module('scrumApp',['scrumApp.services'])
  .controller('repoInfoCtrl',function($scope, repoFactory, userFactory){
 	 $scope.init=function(repository, username, password){
 			$scope.repository=repository;
@@ -117,32 +84,34 @@ angular.module('scrumApp',[])
 	 
  })
 .controller('ganttCtrl',function($scope, $http){
-	$http.get('/resources/js/data.json').success(function(data){
-		$scope.events=data;
-		console.log($scope.events.length);
+	
+	$http.get('/tasks.json').success(function(data){
+		$scope.tasks=[];
+		for(var i=0;i<data.length;i++){
+			var date = new Date(data[i].start);
+			var start=date.getFullYear()+"-"+date.getMonth()+"-"+date.getDate()+"T"+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
+			var date = new Date(data[i].end);
+			var end=date.getFullYear()+"-"+date.getMonth()+"-"+date.getDate()+"T"+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
+			$scope.tasks.push({
+				title:data[i].title,
+				start:start,
+				end:end,
+				color:data[i].color
+			});
+			console.log(date.toString());
+			console.log(start+" "+end);
+		}
+		
 		$('#calendar').fullCalendar({
 			header: {
 				left: 'prev,next today',
 				center: 'title',
 				right: 'month,agendaWeek,agendaDay'
 			},
-			defaultDate: '2014-06-12',
+			defaultDate: '2015-10-01',
 			editable: true,
-			events: $scope.events
+			events: $scope.tasks
 		});
-	});
-	
-	$http.get('/tasks.json').success(function(data){
-		$scope.tasks=[];
-		for(var i=0;i<data.length;i++){
-			$scope.tasks.push({
-				title:data[i].title,
-				start:data[i].start,
-				end:data[i].end,
-				color:data[i].color
-			});
-		}
-		console.log($scope.tasks);
 	});
 	
 })
