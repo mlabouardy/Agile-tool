@@ -37,6 +37,6 @@ public class GithubController{
 		Project project=projectService.findById(id_project);
 		project.setGithub(github);
 		projectService.save(project);
-		return "board";
+		return "redirect:/board.html";
 	}
 }

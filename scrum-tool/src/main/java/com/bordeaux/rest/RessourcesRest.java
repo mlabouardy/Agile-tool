@@ -28,8 +28,8 @@ import com.bordeaux.entity.user.User;
 import com.bordeaux.service.BackLogService;
 import com.bordeaux.service.ProjectService;
 import com.bordeaux.service.SprintService;
+import com.bordeaux.service.TaskDependencyService;
 import com.bordeaux.service.TaskService;
-import com.bordeaux.service.TaskdependencyService;
 import com.bordeaux.service.user.ProductOwnerService;
 import com.bordeaux.service.user.ScrumMasterService;
 import com.bordeaux.service.user.ScrumTeamService;
@@ -66,7 +66,7 @@ public class RessourcesRest {
 	private ProductOwnerService pos;
 	
 	@Autowired
-	private TaskdependencyService tds;
+	private TaskDependencyService tds;
 	
 	@GET
     @Produces({MediaType.APPLICATION_JSON})

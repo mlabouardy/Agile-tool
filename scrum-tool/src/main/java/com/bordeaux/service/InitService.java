@@ -47,7 +47,7 @@ public class InitService {
 	private StatusTaskService statusTaskService;
 	
 	@Autowired
-	private TaskdependencyService tds;
+	private TaskDependencyService tds;
 	
 	@PostConstruct
 	public void init() {

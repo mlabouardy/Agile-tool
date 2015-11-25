@@ -116,6 +116,36 @@ angular.module('scrumApp',[])
 	 }
 	 
  })
+.controller('ganttCtrl',function($scope, $http){
+	$http.get('/resources/js/data.json').success(function(data){
+		$scope.events=data;
+		console.log($scope.events.length);
+		$('#calendar').fullCalendar({
+			header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'month,agendaWeek,agendaDay'
+			},
+			defaultDate: '2014-06-12',
+			editable: true,
+			events: $scope.events
+		});
+	});
+	
+	$http.get('/tasks.json').success(function(data){
+		$scope.tasks=[];
+		for(var i=0;i<data.length;i++){
+			$scope.tasks.push({
+				title:data[i].title,
+				start:data[i].start,
+				end:data[i].end,
+				color:data[i].color
+			});
+		}
+		console.log($scope.tasks);
+	});
+	
+})
 .controller('commitCtrl',function($scope, repoFactory){
 	$scope.init=function(repository, username, password, tag){
 		$scope.repository=repository;

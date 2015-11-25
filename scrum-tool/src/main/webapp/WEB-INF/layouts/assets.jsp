@@ -6,6 +6,8 @@
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.0.0/fullcalendar.css">
+
 <!-- Custom CSS -->
 <link rel="stylesheet" href="<spring:url value="/resources/css/style.css"/>">
 
@@ -20,7 +22,9 @@
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.6.0/moment.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.0.0/fullcalendar.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.1/angular.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
 <script src="<spring:url value="/resources/js/draw.js"/>"></script>

@@ -13,6 +13,7 @@ import javax.persistence.OneToOne;
 import com.bordeaux.entity.user.ScrumTeam;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonProperty;
 
 import com.bordeaux.entity.user.User;
 
@@ -23,7 +24,9 @@ public class Task {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
+	@JsonProperty(value="title")
 	private String Tag;
+	
 	private String Description;
 	private String color;
 	
@@ -33,8 +36,10 @@ public class Task {
 
 	private boolean done;
 	
+	@JsonProperty(value="start")
 	private Date beginning;
 	
+	@JsonProperty(value="end")
 	private Date expectedEnd;
 	
 	private Date effectiveEnd;
