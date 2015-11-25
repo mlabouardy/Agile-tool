@@ -85,6 +85,11 @@ angular.module('scrumApp',['scrumApp.services'])
  })
 .controller('ganttCtrl',function($scope, $http){
 	
+	$scope.refresh=function(){
+		$('#calendar').fullCalendar('refresh');
+		console.log('refreshed');
+	}
+	
 	$http.get('/tasks.json').success(function(data){
 		$scope.tasks=[];
 		for(var i=0;i<data.length;i++){
