@@ -148,7 +148,8 @@ public class InitService {
 		task.setDescription("Tache de test");
 		task.setDifficulty(4);
 		task.setPriority(1);
-		task.setTag("t");
+		task.setTag("Task 1");
+		task.setColor("#D32F2F");
 		task.setDone(false);
 		task.setStatus(statusTask);
 		task.setBeginning((Date) cal.getTime().clone());
@@ -164,7 +165,8 @@ public class InitService {
 		task2.setDescription("Tache de test 2");
 		task2.setDifficulty(3);
 		task2.setPriority(1);
-		task2.setTag("t");
+		task2.setTag("Task 2");
+		task2.setColor("#FFC107");
 		task2.setDone(false);
 		task2.setStatus(statusTask);
 		sprint.getTasks().add(task2);
@@ -181,7 +183,8 @@ public class InitService {
 		task3.setDescription("Tache de test 3");
 		task3.setDifficulty(3);
 		task3.setPriority(1);
-		task3.setTag("t");
+		task3.setTag("Task 3");
+		task3.setColor("#009688");
 		task3.setDone(false);
 		task3.setStatus(statusTask);
 		sprint.getTasks().add(task3);
@@ -199,7 +202,8 @@ public class InitService {
 		task4.setDescription("Tache de test 4");
 		task4.setDifficulty(4);
 		task4.setPriority(1);
-		task4.setTag("t");
+		task4.setTag("Task 4");
+		task4.setColor("#E64A19");
 		task4.setDone(false);
 		task4.setStatus(statusTask);
 		task4.setBeginning((Date) cal.getTime().clone());

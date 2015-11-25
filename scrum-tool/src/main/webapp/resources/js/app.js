@@ -89,19 +89,29 @@ angular.module('scrumApp',['scrumApp.services'])
 		$scope.tasks=[];
 		for(var i=0;i<data.length;i++){
 			var date = new Date(data[i].start);
-			var start=date.getFullYear()+"-"+date.getMonth()+"-"+date.getDate()+"T"+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
+			var year=date.getFullYear()
+			var month=('0' + date.getMonth()).slice(-2);
+			var day=('0' + date.getDate()).slice(-2);
+			var h=('0' + date.getHours()).slice(-2);
+			var m=('0' + date.getMinutes()).slice(-2);
+			var s=('0' + date.getSeconds()).slice(-2);
+			var start=year+"-"+month+"-"+day+"T"+h+":"+m+":"+s;
 			var date = new Date(data[i].end);
-			var end=date.getFullYear()+"-"+date.getMonth()+"-"+date.getDate()+"T"+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
+			var year=date.getFullYear()
+			var month=('0' + date.getMonth()).slice(-2);
+			var day=('0' + date.getDate()).slice(-2);
+			var h=('0' + date.getHours()).slice(-2);
+			var m=('0' + date.getMinutes()).slice(-2);
+			var s=('0' + date.getSeconds()).slice(-2);
+			var end=year+"-"+month+"-"+day+"T"+h+":"+m+":"+s;
 			$scope.tasks.push({
 				title:data[i].title,
 				start:start,
 				end:end,
 				color:data[i].color
 			});
-			console.log(date.toString());
-			console.log(start+" "+end);
 		}
-		
+		console.log($scope.tasks);
 		$('#calendar').fullCalendar({
 			header: {
 				left: 'prev,next today',
