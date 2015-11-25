@@ -11,6 +11,9 @@
 <!-- Custom CSS -->
 <link rel="stylesheet" href="<spring:url value="/resources/css/style.css"/>">
 
+<!-- VIZ -->
+<script type="text/javascript" src="<spring:url value="/resources/js/viz.js"/>"></script>
+
 <!-- JQuery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
 

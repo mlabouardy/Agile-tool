@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.Iterator;
 
 import javax.transaction.Transactional;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -15,12 +14,12 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.bordeaux.entity.Sprint;
 import com.bordeaux.entity.Task;
 import com.bordeaux.entity.TaskDependencies;
+import com.bordeaux.entity.pert.Pert;
 import com.bordeaux.entity.user.ProductOwner;
 import com.bordeaux.entity.user.ScrumMaster;
 import com.bordeaux.entity.user.ScrumTeam;
@@ -157,6 +156,45 @@ public class RessourcesRest {
 		
 	}
 	
+	@GET
+	@Produces({MediaType.APPLICATION_JSON})
+	@Path("/getCurrentPertFromScrumMaster/{id}")
+	public String getCurrentPertFromScrumMaster(@PathParam("id") int id) throws Exception{
+		
+		Sprint currentSprint = getCurrentSprintFromScrumMaster(id);
+		
+		if (currentSprint != null){
+			
+			Collection<Task> tasks = currentSprint.getTasks();
+			
+			if (tasks!=null){
+				
+				Pert pert = new Pert();
+				
+				for (Task task : tasks){
+					long differenceInMillis = task.getEffectiveEnd().getTime() - task.getBeginning().getTime() ;
+					pert.addTask(task.getDescription(), differenceInMillis/86400000);
+				}
+				
+				for (Task task : tasks){
+					Collection<Task> dependencies = getDependenciesFrom(task.getId());
+					if (dependencies != null){
+						for (Task dep : dependencies){
+							pert.getTask(task.getDescription()).addDependency(pert.getTask(dep.getDescription()));
+						}
+					}
+				}
+				
+				pert.closeGraph();
+				
+				return pert.getGraph();
+			}
+			
+		}
+		
+		return "null";
+		
+	}
 	
 	@POST
 	@Path("/setSprintToUser/{sprint_id}/{user_id}")
