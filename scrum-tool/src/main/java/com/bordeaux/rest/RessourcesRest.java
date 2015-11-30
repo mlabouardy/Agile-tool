@@ -338,6 +338,8 @@ public class RessourcesRest {
 		Task t = ts.findTaskById(taskId);
 		StatusTask st = statusTS.findStatusTaskByid(statusId);
 		if(t != null && st != null){
+			if(st.isTerminal())
+				t.setEffectiveEnd(new Date());
 			t.setStatus(st);
 			ts.save(t);
 			return "success";

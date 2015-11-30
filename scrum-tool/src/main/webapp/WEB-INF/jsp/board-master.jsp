@@ -26,5 +26,12 @@
 	
 	</div>
 	
+	<c:if test="${sprint != null}">
+		<div class="col-md-12 col-sm-12 col-lg-12 row">
+			<jsp:include page="burndownChart.jsp" ></jsp:include>
+		
+		</div>
+	</c:if>
+	
 	
 </div>

@@ -146,6 +146,7 @@ public class InitService {
 		
 		StatusTask statusTask3 = new StatusTask();
 		statusTask3.setName("DONE");
+		statusTask3.setTerminal(true);
 		
 		cal.setTime(date_tmp);
 		//DateFormat formatDate = new SimpleDateFormat("EEEE, d MMM yyyy");

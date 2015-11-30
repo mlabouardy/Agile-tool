@@ -1,8 +1,13 @@
 package com.bordeaux.controller;
 
 import java.security.Principal;
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+
+import javax.ws.rs.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.bordeaux.entity.Role.RoleType;
+import com.bordeaux.entity.Sprint;
 import com.bordeaux.entity.Task;
 import com.bordeaux.entity.user.ProductOwner;
 import com.bordeaux.entity.user.ScrumMaster;
@@ -22,7 +28,9 @@ import com.bordeaux.form.backlog.BackLogForm;
 import com.bordeaux.form.backlog.UserStoryForm;
 import com.bordeaux.form.task.TaskForm;
 import com.bordeaux.form.team.ScrumTeamForm;
+import com.bordeaux.model.BurndownChart;
 import com.bordeaux.service.BackLogService;
+import com.bordeaux.service.SprintService;
 import com.bordeaux.service.UserStoryService;
 import com.bordeaux.service.user.ProductOwnerService;
 import com.bordeaux.service.user.ScrumMasterService;
@@ -36,7 +44,7 @@ public class DashboardController {
 	private UserService userService;
 
 	// j'ai fait un autre service car le jpa ne veut pas foctionner avec la
-	// généricité
+	// gï¿½nï¿½ricitï¿½
 	// donc pour chaque type d'utilisateur il faut crï¿½er un service et un
 	// repository
 	@Autowired
@@ -53,6 +61,42 @@ public class DashboardController {
 
 	@Autowired
 	private UserStoryService userStoryService;
+	
+	@Autowired
+	private SprintService ss;
+	
+	
+	public Sprint getCurrentSprintFromScrumMaster(int id) throws Exception{
+		
+		ScrumMaster sm = scrumMasterService.findUserById(id);
+		Sprint res = null;
+		if(sm != null){
+			Collection<Sprint> listAssociatedSprint = ss.findSprintOfUser(sm);
+			Iterator<Sprint> ite = listAssociatedSprint.iterator();
+			Date current = new Date();
+			Calendar calres = Calendar.getInstance();
+			Calendar caltmp = Calendar.getInstance();
+			Calendar calCurrent = Calendar.getInstance();
+			calCurrent.setTime(current);
+			if(ite.hasNext()){
+				res = ite.next();
+				calres.setTime(res.getBeginning());
+			}
+			Sprint tmp;
+			while(ite.hasNext()){
+				tmp = ite.next();
+				caltmp.setTime(tmp.getBeginning());
+				if(calres.after(caltmp) && calres.compareTo(calCurrent) <= 0){
+					res = tmp;
+					calres = caltmp;
+				}
+			}
+			
+		}
+		
+		return res;
+		
+	}
 	
 	@RequestMapping("/board")
 	public String dashboard(Model model, Principal principal) {
@@ -74,13 +118,29 @@ public class DashboardController {
 			model.addAttribute("scrumMaster", scrumMaster);
 			model.addAttribute("devListWithoutTeam", devListWithoutTeam);
 			model.addAttribute("scrumTeamForm", new ScrumTeamForm());
+		
+			
+			
+			Sprint s;
+			try {
+				s = getCurrentSprintFromScrumMaster(scrumMaster.getId());
+				model.addAttribute("sprint", s);
+				BurndownChart b = new BurndownChart(s);
+				model.addAttribute("expectedCosts", b.getExpectedCostsFor(s.getBeginning(), s.getEnd(), 1));
+				model.addAttribute("effectiveCosts", b.getEffectiveCostsFor(s.getBeginning(), s.getEnd(), 1));
+				model.addAttribute("dates", b.getDateStr(s.getBeginning(), s.getEnd(), 1));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+					
 		}
 
 		else if (user.getRole().getName().equals(RoleType.TEAM.toString())) {
 			ScrumTeam scrumTeam = scrumTeamService.findUserByEmail(email);
 			ScrumMaster scrumMaster = scrumMasterService.getScrumMasterByDevID(scrumTeam.getId());
 			
-			// s'il le dev est déja affecté à un groupe
+			// s'il le dev est dï¿½ja affectï¿½ ï¿½ un groupe
 			// sinon on affiche pas le pert (le if dans la jsp)
 			if (scrumMaster != null){
 				model.addAttribute("scrumMaster",scrumMaster);
@@ -88,6 +148,8 @@ public class DashboardController {
 			
 			model.addAttribute("scrumTeam",scrumTeam);
 		}
+		
+		
 
 		return "board";
 	}

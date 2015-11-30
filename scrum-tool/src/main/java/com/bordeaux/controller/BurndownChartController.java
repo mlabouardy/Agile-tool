@@ -28,7 +28,7 @@ public class BurndownChartController {
 	@Autowired
 	private ProjectService projectService;
 	
-	@RequestMapping("/burndownChart")
+	
 	public String burndownChart(Model model, Integer sprint_id){
 		if(sprint_id != null){
 		
@@ -40,7 +40,7 @@ public class BurndownChartController {
 			model.addAttribute("effectiveCosts", b.getEffectiveCostsFor(s.getBeginning(), s.getEnd(), 1));
 			model.addAttribute("dates", b.getDateStr(s.getBeginning(), s.getEnd(), 1));
 		}
-		//List<Task> tasks = (List<Task>) s.getTasks();
+		
 		return "burndownChart";
 		
 	}

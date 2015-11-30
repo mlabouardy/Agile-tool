@@ -18,11 +18,21 @@ public class StatusTask {
 	
 	private String name;
 	
+	boolean terminal = false;
+	
 	@OneToMany(targetEntity=Task.class,mappedBy="status")
 	private Collection<Task> tasks;
 
 	public int getId() {
 		return id;
+	}
+
+	public boolean isTerminal() {
+		return terminal;
+	}
+
+	public void setTerminal(boolean terminal) {
+		this.terminal = terminal;
 	}
 
 	public void setId(int id) {

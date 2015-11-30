@@ -10,37 +10,9 @@
 //-->
 </script>
 
-<nav class="navbar navbar-default navbar-custom">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed"
-				data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-				aria-controls="navbar">
-				<span class="sr-only">Toggle navigation</span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#">Scrum Tool</a>
-		</div>
-		<div id="navbar" class="navbar-collapse collapse">
-			<ul class="nav navbar-nav">
-				<li class="active"><a href="#home">Home</a></li>
-				<li><a href="#features">Features</a></li>
-				<li><a href="#contact">Contact</a></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="<spring:url value="/login.html"/>">Login</a></li>
-				<li><a href="<spring:url value="/register.html"/>">Register</a></li>
-			</ul>
-		</div>
-		<!--/.nav-collapse -->
-	</div>
-	<!--/.container-fluid -->
-</nav>
-
 <div class="container">
   <div class="row">
-    <div class="col-md-5 col-md-offset-1">
+    <div class="col-md-8 col-sm-8 col-lg-8 col-md-offset-1">
       
       <h1>Burdown Chart : </h1>
       <script>
@@ -72,9 +44,7 @@
 
 <script type="text/javascript">
 
-//alert(${sprint.getId()});
 var ctx = document.getElementById("myChart").getContext("2d");
-var expectedCosts = ${expectedCosts};
 var data = {
     labels: datesBurndown,
     datasets: [
