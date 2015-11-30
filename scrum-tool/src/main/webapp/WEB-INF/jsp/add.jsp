@@ -43,7 +43,7 @@
 
 				<c:if test="${fn:length(userStoryForm.getDependencies()) > 0}">
 					<div class="form-group">
-					 	<label for="dependencies_input">Dependencies</label>
+					 	<label class="control-label col-md-3 col-sm-3 col-xs-12" for="dependencies_input">Dependencies</label>
 					 	<div class="col-md-6 col-sm-6 col-xs-12">
 					 	<c:forEach var="userStoryId" items="${userStoryForm.getDependencies()}">
 							<div class="checkbox">
