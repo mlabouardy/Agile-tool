@@ -1,5 +1,6 @@
 package com.bordeaux.rest;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
@@ -15,8 +16,11 @@ import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
+import com.bordeaux.entity.Project;
 import com.bordeaux.entity.Sprint;
+import com.bordeaux.entity.StatusTask;
 import com.bordeaux.entity.Task;
 import com.bordeaux.entity.TaskDependencies;
 import com.bordeaux.entity.pert.Pert;
@@ -27,8 +31,9 @@ import com.bordeaux.entity.user.User;
 import com.bordeaux.service.BackLogService;
 import com.bordeaux.service.ProjectService;
 import com.bordeaux.service.SprintService;
-import com.bordeaux.service.TaskDependencyService;
+import com.bordeaux.service.StatusTaskService;
 import com.bordeaux.service.TaskService;
+import com.bordeaux.service.TaskDependencyService;
 import com.bordeaux.service.user.ProductOwnerService;
 import com.bordeaux.service.user.ScrumMasterService;
 import com.bordeaux.service.user.ScrumTeamService;
@@ -67,15 +72,25 @@ public class RessourcesRest {
 	@Autowired
 	private TaskDependencyService tds;
 	
+	@Autowired
+	private StatusTaskService statusTS;
+	
+	
+	
+	@GET
+    @Produces({MediaType.APPLICATION_JSON})
+    @Path("/getProjects")
+	public Collection<Project> getProjects(){
+		return ps.findAll();
+	}
+	
+	
 	@GET
     @Produces({MediaType.APPLICATION_JSON})
     @Path("/getTask/{id}")
     public Task getTask(@PathParam("id") int id) throws Exception {
-		Sprint s = ss.findSprintById(id);
-		Collection<Task> ct = s.getTasks();
-		Iterator<Task> ite = ct.iterator();
-		Task t = ite.next();
-		return t;
+
+		return ts.findTaskById(id);
 		
     }
 	
@@ -120,6 +135,20 @@ public class RessourcesRest {
 		return ps.findById(id).getSprintList();
 		
 	}
+	
+	@GET
+	@Produces({MediaType.APPLICATION_JSON})
+	@Path("/getSprintsFromScrumMaster/{id}")
+	public Collection<Sprint> getSprintsFromScrumMaster(@PathParam("id") int id) throws Exception{
+		
+		ScrumMaster sm = sms.findUserById(id);
+		if(sm != null)
+			return ss.findSprintOfUser(sm);
+		return null;
+		
+	}
+	
+	
 	
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
@@ -233,6 +262,17 @@ public class RessourcesRest {
 		return sms.findAll();
 	}
 	
+	@GET
+	@Produces({MediaType.APPLICATION_JSON})
+	@Path("/getScrumMastersFromProject/{project_id}")
+	public Collection<ScrumMaster> getScrumMasters(@PathParam("project_id") int project_id){
+		Project p = ps.findById(project_id);
+		if(p != null)
+			return sms.findScrumMastersByProject(p);
+		return null;
+	}
+	
+	
 	@GET 
 	@Produces({MediaType.APPLICATION_JSON})
 	@Path("/getDevs")
@@ -248,6 +288,65 @@ public class RessourcesRest {
 	}
 	
 	
+	@GET
+	@Produces({MediaType.APPLICATION_JSON})
+	@Path("/getStatusTasks")
+	public Collection<StatusTask> getStatusTasks(){
+		return statusTS.findAll();
+	}
+	
+	
+	@GET
+	@Produces({MediaType.APPLICATION_JSON})
+	@Path("/getTasksByStatus/{status_id}")
+	public Collection<Task> getTasksByStatus(@PathParam("status_id") int id){
+		StatusTask st = statusTS.findStatusTaskByid(id);
+		if(st != null)
+			return ts.findTasksByStatus(st);
+		return null;
+	}
+	
+	
+	@GET
+	@Produces({MediaType.APPLICATION_JSON})
+	@Path("/getTasksByStatusAndSprint/{status_id}/{sprint_id}")
+	public Collection<Task> getTasksByStatusAndSprint(@PathParam("status_id") int statusId, @PathParam("sprint_id") int sprintId){
+		
+		Sprint s = ss.findSprintById(sprintId);
+		if(s!= null){
+			Collection<Task> tasksInSprint = s.getTasks(); 
+			Iterator<Task> taskIte = tasksInSprint.iterator();
+			Collection<Task> res = new ArrayList<Task>();
+			Task task_tmp;
+			StatusTask st = statusTS.findStatusTaskByid(statusId);
+			if(st != null){
+				while(taskIte.hasNext()){
+					task_tmp = taskIte.next();
+					if(task_tmp.getStatus() == st)
+						res.add(task_tmp);
+				}
+				return res;
+			}
+		}
+		return null;
+	}
+	
+	@POST
+	@Path("/setStatusToTask/{status_id}/{task_id}")
+	public String setStatusToTask(@PathParam("status_id") int statusId, @PathParam("task_id") int taskId){
+		System.out.println("/setStatusToTask/"+ statusId + "/" + taskId );
+		Task t = ts.findTaskById(taskId);
+		StatusTask st = statusTS.findStatusTaskByid(statusId);
+		if(t != null && st != null){
+			t.setStatus(st);
+			ts.save(t);
+			return "success";
+		}
+		else if(t != null && st == null)
+			return "no status Found for this id";
+		else
+			return "no task found for this id";
+	}
 	
 	
 }
