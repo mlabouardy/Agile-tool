@@ -6,7 +6,7 @@
 <div class="container padding-container">
 	<div class="col-md-12">
 		<div class="panel panel-primary">
-			<div class="panel-heading">List of user stories<a class="btn btn-danger pull-right btn-xs"
+			<div class="panel-heading panel-dark">List of user stories<a class="btn btn-danger pull-right btn-xs"
 					href="<spring:url value="/logout"/>">Sign out</a></div>
 			<div class="panel-body">
 				

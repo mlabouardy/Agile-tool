@@ -16,6 +16,9 @@ html, body {
 
 body {
 	background: #F3F3F4;
+	background: url(polygon.jpg) no-repeat fixed; 
+   -webkit-background-size: cover;
+     background-size: cover;
 }
 
 .middle-box {
@@ -108,4 +111,9 @@ body {
 
 .scrumMaster{
 	background-color: black;
+}
+
+
+.panel-dark > .panel-primary  {
+	border-color: #000;
 }
