@@ -139,12 +139,20 @@ public class InitService {
 		sprint.setEnd((Date) cal.getTime().clone());
 		Task task = new Task();
 		StatusTask statusTask = new StatusTask();
+		statusTask.setName("TO DO");
+		
+		StatusTask statusTask2 = new StatusTask();
+		statusTask2.setName("ON GOING");
+		
+		StatusTask statusTask3 = new StatusTask();
+		statusTask3.setName("DONE");
+		
 		cal.setTime(date_tmp);
 		//DateFormat formatDate = new SimpleDateFormat("EEEE, d MMM yyyy");
 		
 	
 		
-		statusTask.setName("TO DO");
+		
 		task.setDescription("Tache de test");
 		task.setDifficulty(4);
 		task.setPriority(1);
@@ -222,6 +230,8 @@ public class InitService {
 		td.getDependencies().add(task3);
 
 		statusTaskService.save(statusTask);
+		statusTaskService.save(statusTask2);
+		statusTaskService.save(statusTask3);
 		sprintService.save(sprint);
 		taskService.save(task);
 		taskService.save(task2);

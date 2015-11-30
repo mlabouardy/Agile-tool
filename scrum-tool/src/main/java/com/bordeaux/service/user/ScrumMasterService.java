@@ -116,4 +116,8 @@ public class ScrumMasterService {
 		scrumMasterRepository.saveAndFlush(scrumMaster);
 	}
 	
+	public Collection<ScrumMaster> findScrumMastersByProject(Project project){
+		return scrumMasterRepository.findByProject(project);
+	}
+	
 }

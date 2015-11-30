@@ -20,4 +20,11 @@
 	<jsp:include page="scrumteam.jsp"></jsp:include>	
 	<jsp:include page="pert.jsp"></jsp:include>
 	
+	
+	<div class="col-md-12 col-sm-12 col-lg-12 row">
+		<jsp:include page="kanban.jsp"></jsp:include>
+	
+	</div>
+	
+	
 </div>

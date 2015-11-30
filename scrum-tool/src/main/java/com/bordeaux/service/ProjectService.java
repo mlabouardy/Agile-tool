@@ -57,6 +57,9 @@ public class ProjectService {
 		return null;
 	}
 	
+	public Collection<Project> findAll(){
+		return projectRepository.findAll();
+	}
 	
 	
 }

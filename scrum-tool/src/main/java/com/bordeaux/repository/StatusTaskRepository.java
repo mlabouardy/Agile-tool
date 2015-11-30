@@ -7,4 +7,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface StatusTaskRepository extends JpaRepository<StatusTask , Integer>{
 
+	
+	public StatusTask findById(int id);
+	
+	
+	
 }

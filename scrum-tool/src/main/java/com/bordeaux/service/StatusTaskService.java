@@ -1,5 +1,7 @@
 package com.bordeaux.service;
 
+import java.util.Collection;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,15 @@ public class StatusTaskService {
 	
 	public void save(StatusTask st){
 		statusTaskRepository.save(st);
+	}
+	
+	
+	public Collection<StatusTask> findAll(){
+		return statusTaskRepository.findAll();
+	}
+	
+	public StatusTask findStatusTaskByid(int id){
+		return statusTaskRepository.findById(id);
 	}
 	
 }
