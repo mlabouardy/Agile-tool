@@ -4,27 +4,32 @@
 <script src="<spring:url value="/resources/js/funcRest.js"/>"></script>
 
 <script src="<spring:url value="/resources/js/jquery-ui.min.js"/>" > </script>
-
-<div class="container container-fluid">	
-	<div class="kanban row" style="margin-top: 20px">
-		<div id="selectKanbanParameters" class="row col-md-8 col-sm-8 col-lg-8"> 
-			
-				<div class="col-md-4 col-sm-4 col-lg-4">
-					<select id="selectProject" class="form-control" onchange="changeProjectSelection()">
-
-					</select>
-				</div>
-			
-		</div>
-		<div class="kanban_dragdrop col-md-12 col-sm-12 col-lg-12"> 
-			<div id="tasks" class="row"> 
-				
-			
-			</div>
-			
-		</div>
-	</div>
+<div class="col-md-12">
 	
+		<div class="panel panel-primary">
+			<div class="panel-heading">Kanban</div>
+							
+			<div class="panel-body">
+					<div class="kanban row" style="margin-top: 20px">
+						<div id="selectKanbanParameters" class="row col-md-8 col-sm-8 col-lg-8"> 
+							
+								<div class="col-md-4 col-sm-4 col-lg-4">
+									<select id="selectProject" class="form-control" onchange="changeProjectSelection()">
+				
+									</select>
+								</div>
+							
+						</div>
+						<div class="kanban_dragdrop col-md-12 col-sm-12 col-lg-12"> 
+							<div id="tasks" class="row"> 
+								
+							
+							</div>
+							
+						</div>
+					</div>
+			</div>
+		</div>
 </div>	
 	
 	
@@ -32,7 +37,7 @@
 		
 		var datas;
 		
-		var baseUrl = "http://localhost:8085/rest/ressources/";
+		var baseUrl = "/rest/ressources/";
 		
 		$(".kanban_dragdrop").height($("body").height()*0.6 + "px");
 	
