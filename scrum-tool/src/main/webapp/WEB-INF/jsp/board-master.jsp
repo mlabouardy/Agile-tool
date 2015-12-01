@@ -3,6 +3,8 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<jsp:include page="haut.jsp"></jsp:include>
+
 <div class="container padding-container">
 	<div class="col-md-12">
 		<div class="panel panel-primary">

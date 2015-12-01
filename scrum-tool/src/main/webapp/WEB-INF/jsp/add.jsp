@@ -2,14 +2,13 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="f"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-
+	<jsp:include page="haut.jsp"></jsp:include>
 <div class="container padding-container">
 <div class="panel panel-primary">
-		<div class="panel-heading">User Story</div>
-		<div class="panel-body">
-										
-     <div class="container-fluid">
-  		<div class="row-fluid">
+	<div class="panel-heading">User Story</div>
+		<div class="panel-body">									
+     		<div class="container-fluid">
+  				<div class="row-fluid">
 	<f:form class="form-horizontal" modelAttribute="userStoryForm" method="post" action="/add.html" >
 
 			<div class="container">
@@ -75,7 +74,7 @@
                         <button type="submit" class="btn btn-primary">Cancel</button>
                      	<button type="submit" class="btn btn-success">Submit</button>
                      </div>
-                     </div>
+                 </div>
                  </div>
 
 	</f:form>

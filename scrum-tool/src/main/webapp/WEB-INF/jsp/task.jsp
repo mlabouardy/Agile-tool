@@ -2,7 +2,7 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="f"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-
+<jsp:include page="haut.jsp"></jsp:include>
 
 	<c:if test="${fn:length(scrumMaster.getUserStories()) > 0}">				
 				<table class="table table-bordered table-hover">

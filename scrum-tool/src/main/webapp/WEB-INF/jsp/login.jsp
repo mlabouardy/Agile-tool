@@ -1,3 +1,4 @@
+<jsp:include page="haut.jsp"></jsp:include>
 <div class="middle-box">
 	<form  action="/j_spring_security_check" method="post">
 		<div class="form-group">

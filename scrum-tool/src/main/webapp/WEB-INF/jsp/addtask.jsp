@@ -3,14 +3,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
+<jsp:include page="haut.jsp"></jsp:include>
+
 <div class="container padding-container">
  
  <div class="panel panel-primary">
-		<div class="panel-heading">Task</div>
-		<div class="panel-body">
-										
-     <div class="container-fluid">
-  		<div class="row-fluid">
+	<div class="panel-heading">Task</div>
+		<div class="panel-body">									
+    	  <div class="container-fluid">
+  	    	<div class="row-fluid">
  
  <c:if test="${empty taskForm.exception}">
 	<f:form commandName="taskForm" >
@@ -56,7 +57,7 @@
                         <button type="submit" class="btn btn-primary">Cancel</button>
                      	<button type="submit" class="btn btn-success">Submit</button>
                      </div>
-                     </div>
+                </div>
 			</div>	
 
 	</f:form>	

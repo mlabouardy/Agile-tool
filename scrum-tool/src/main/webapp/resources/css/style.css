@@ -14,6 +14,23 @@ html, body {
 	height: 100%;
 }
 
+.panel > .panel-heading {
+    background: linear-gradient(0deg, black, gray);
+
+}
+
+.panel-primary{
+/* 	background:black; */
+	border-color: black;
+	background-color: ;
+}
+.panel-heading{
+	background-color: black;
+}
+/* .panel{ */
+/* 	background-color: black; */
+/* } */
+
 body {
 	background: #F3F3F4;
 	background: url(polygon.jpg) no-repeat fixed; 
@@ -114,6 +131,6 @@ body {
 }
 
 
-.panel-dark > .panel-primary  {
-	border-color: #000;
-}
+/* .panel-dark > .panel-primary  { */
+/* 	border-color: #000; */
+/* } */

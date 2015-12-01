@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<jsp:include page="haut.jsp"></jsp:include>
 <div class="middle-box">
 	<form:form commandName="user" id="registrationForm">
 		<c:if test="${param.success eq true}">

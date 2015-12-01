@@ -3,6 +3,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
+<jsp:include page="haut.jsp"></jsp:include>
 
 <div class="panel panel-success">
 

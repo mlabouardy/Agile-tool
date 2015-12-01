@@ -1,3 +1,4 @@
+<jsp:include page="haut.jsp"></jsp:include>
 <div class="container-fluid padding-container" ng-controller="commitCtrl"
 	ng-init="init('${github.getRepository()}','${github.getUsername()}','${github.getPassword()}','${tag}')">
 	<div class="row">
